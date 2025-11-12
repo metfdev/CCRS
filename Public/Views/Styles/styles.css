@@ -1,0 +1,105 @@
+:root {
+  --colorPrincipal: #2e2e2e;
+  --colorSecundario: #d9d9d9c4;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: "Times New Roman", Times, serif;
+}
+
+.login {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../img/fondo.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.login .login-form {
+  width: 500px;
+  padding: 2rem 4rem;
+  backdrop-filter: blur(5px);
+  background-color: var(--colorSecundario);
+  border-radius: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.login .login-form-title {
+  font-size: 2rem;
+  text-align: center;
+  color: var(--colorPrincipal);
+}
+
+.login .login-form-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.login .login-form-group label {
+  font-size: 1.2rem;
+  margin-left: 0.5rem;
+  color: var(--colorPrincipal);
+}
+
+.login .login-form-group input {
+  padding: 0 1rem;
+  border-radius: 50px;
+  border: none;
+  outline: none;
+  height: 40px;
+  font-size: 1rem;
+  color: var(--colorPrincipal);
+}
+
+.login .login-form-group-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.login .login-form-group-buttons button{
+  padding: 0.5rem 1.5rem;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 1.2rem;
+  font-family: 'Times New Roman', Times, serif;
+  color: white;
+  background-color: var(--colorPrincipal);
+  font-weight: bold;
+  cursor: pointer;
+
+  &:hover{
+    background-color: black;
+  }
+
+  &:active{
+    transform: scale(0.9);
+  }
+}
+
+.login .login-form-group-buttons a{
+  text-decoration: none;
+  font-size: 1.2rem;
+  color: var(--colorPrincipal);
+
+  &:hover{
+    text-decoration: underline;
+    color:black;
+  }
+}
