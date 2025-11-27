@@ -18,7 +18,9 @@ if (isset($_GET['views'])) {
 <html lang="es">
 
 <head>
-  <?php require_once "./views/inc/head.php";
+  <?php
+    require_once "./views/inc/head.php";
+    require_once "./Views/Inc/script.php";
   ?>
 </head>
 
@@ -35,12 +37,10 @@ if (isset($_GET['views'])) {
   ?>
     <main class="flex column grid-900 column-d-900 hg-100vh column-d-1200">
       <?php
-      $insLogin->vigenciaRifa();
-      include_once "./views/content/modal-view.php";
-      if ((!isset($_SESSION['id']) || $_SESSION['id'] == "") || (!isset($_SESSION['nombre']) || $_SESSION['nombre'] == "") || (!isset($_SESSION['rol']) || $_SESSION['rol'] == "")) {
-        $insLogin->cerrarSesion();
-        exit();
-      }
+      // if ((!isset($_SESSION['id']) || $_SESSION['id'] == "") || (!isset($_SESSION['nombre']) || $_SESSION['nombre'] == "") || (!isset($_SESSION['rol']) || $_SESSION['rol'] == "")) {
+      //   $insLogin->cerrarSesion();
+      //   exit();
+      // }
 
       ?>
       <section class="sections-overflow hd-100vh">
@@ -51,6 +51,7 @@ if (isset($_GET['views'])) {
     </main>
   <?php
   }
+
   ?>
 </body>
 <?php ob_end_flush(); ?>

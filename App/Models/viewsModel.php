@@ -18,7 +18,7 @@ class viewsModel
 
     if (in_array($vista, $listaBlanca)) {
       if (is_file("./Views/Content/" . $vista . "-view.php")) {
-        $contenido = $vista;
+        $contenido = "./Views/Content/" . $vista . "-view.php";
       } else {
         $contenido = "404";
       }
