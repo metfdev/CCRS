@@ -6,7 +6,6 @@ use App\Models\LoginModel;
 
 class LoginController extends LoginModel
 {
-
   /**
    * Funcion para iniciar sesion
    *
@@ -159,7 +158,6 @@ class LoginController extends LoginModel
    */
   public function cerrarSesion()
   {
-    session_start();
     session_unset();
     session_destroy();
     return json_encode([

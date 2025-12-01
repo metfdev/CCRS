@@ -1,3 +1,11 @@
+<?php
+
+if (!isset($_SESSION['id']) || $_SESSION['id'] == "") {
+  header("Location: " . APP_URL );
+}
+
+?>
+
 <section class="home-section">
   <h1>
     Bienvenido

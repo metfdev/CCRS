@@ -10,6 +10,17 @@
   font-size: "Times New Roman", Times, serif;
 }
 
+main {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+/*
+  Estilos para Login
+*/
+
 .login {
   width: 100%;
   height: 100vh;
@@ -72,34 +83,139 @@
   gap: 1rem;
 }
 
-.login .login-form-group-buttons button{
+.login .login-form-group-buttons button {
   padding: 0.5rem 1.5rem;
   border-radius: 10px;
   border: none;
   outline: none;
   font-size: 1.2rem;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   color: white;
   background-color: var(--colorPrincipal);
   font-weight: bold;
   cursor: pointer;
 
-  &:hover{
+  &:hover {
     background-color: black;
   }
 
-  &:active{
+  &:active {
     transform: scale(0.9);
   }
 }
 
-.login .login-form-group-buttons a{
+.login .login-form-group-buttons a {
   text-decoration: none;
   font-size: 1.2rem;
   color: var(--colorPrincipal);
 
-  &:hover{
+  &:hover {
     text-decoration: underline;
-    color:black;
+    color: black;
   }
+}
+
+/*
+  Estilos para Aside
+*/
+
+.aside {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  padding: 2rem 3rem;
+  background-color: #2e2e2e;
+}
+
+.aside-logo {
+  width: 150px;
+  margin-bottom: 2rem;
+}
+
+.aside-Container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.aside-Menu {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: 1rem;
+}
+
+.aside-list {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+}
+
+.aside-enlance {
+  text-decoration: none;
+  color: var(--colorSecundario);
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+
+  &:hover {
+    color: white;
+  }
+}
+
+.aside-enlace-Active{
+  color: white;
+  text-decoration: underline;
+}
+
+.aside-List-Container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--colorSecundario);
+  border-radius: 50px;
+  padding: 0.5rem;
+}
+
+.aside-icono {
+  width: 20px;
+  cursor: pointer;
+}
+
+.aside-enlance:hover .aside-icono {
+  transform: scale(1.1);
+  transition: all 0.2s ease-in-out;
+}
+
+/*
+  Estilos para Home
+*/
+
+.home-section {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  background-image: url("../img/fondo.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 2rem;
+  opacity: 0.4;
 }

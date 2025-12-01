@@ -1,5 +1,4 @@
 <?php
-session_name("CCRS");
 session_start();
 
 // define('SESSION_TIMEOUT', 250);

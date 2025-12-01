@@ -5,10 +5,9 @@ ini_set('session.cookie_lifetime', 0);
 ini_set('session.use_strict_mode', 1);
 ob_start();
 
-require_once "./Views/Inc/session.php";
+
 require_once "../config/app.php";
 require_once "../autoload.php";
-
 
 if (isset($_GET['views'])) {
   $url = explode("/", $_GET['views']);
@@ -30,21 +29,24 @@ if (isset($_GET['views'])) {
   <?php
 
   use \App\Controllers\viewsController;
+  use \App\Controllers\LoginController;
 
   $viewsController = new viewsController();
+  $insLogin = new LoginController();
   $vista = $viewsController->obtenerVistasControlador($url[0]);
   if ($vista == "login" || $vista == "404") {
     require_once "./views/content/" . $vista . "-view.php";
   } else {
 
   ?>
-    <main class="flex column grid-900 column-d-900 hg-100vh column-d-1200">
+    <main>
       <?php
-      // if ((!isset($_SESSION['id']) || $_SESSION['id'] == "") || (!isset($_SESSION['nombre']) || $_SESSION['nombre'] == "") || (!isset($_SESSION['rol']) || $_SESSION['rol'] == "")) {
-      //   $insLogin->cerrarSesion();
-      //   exit();
-      // }
-
+      require_once "./Views/Inc/session.php";
+      if ((!isset($_SESSION['id']) || $_SESSION['id'] == "") || (!isset($_SESSION['user']) || $_SESSION['user'] == "") || (!isset($_SESSION['rol']) || $_SESSION['rol'] == "")) {
+        $insLogin->cerrarSesion();
+        exit();
+      }
+        require_once "./Views/Inc/aside.php";
       ?>
       <section class="sections-overflow hd-100vh">
         <?php

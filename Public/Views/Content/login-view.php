@@ -1,5 +1,4 @@
 <?php
-
 use App\Controllers\LoginController;
 $loginController = new LoginController();
 
@@ -25,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo '<script>
       alertas_ajax(' .  json_encode($insLogin) . ');
       setTimeout(() => {
-        window.location.href = "' . APP_URL . '/home";
+        window.location.href = "' . APP_URL . 'home";
       }, 2000);
     </script>';
   } else {
