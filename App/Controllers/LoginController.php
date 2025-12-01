@@ -50,8 +50,6 @@ class LoginController extends LoginModel
           "icono" => "error"
         ]);
       } else {
-        session_name($userVerify['user'][0]['name'].'_CCRS');
-        session_start();
 
         $_SESSION['id'] = $userVerify['user'][0]['id'];
         $_SESSION['user'] = $userVerify['user'][0]['name'] . ' ' . $userVerify['user'][0]['last_name'];
@@ -88,7 +86,7 @@ class LoginController extends LoginModel
   {
 
     if (empty($dataRegistro)) {
-      return json_encode([
+      return ([
         "tipo" => "simple",
         "titulo" => 'No has llenado todos los campos que son obligatorios',
         "icono" => "error"
@@ -96,7 +94,7 @@ class LoginController extends LoginModel
     }
 
     if (empty($dataRegistro['nombre']) || empty($dataRegistro['apellido']) || empty($dataRegistro['cargo']) || empty($dataRegistro['departamento'])) {
-      return json_encode([
+      return ([
         "tipo" => "simple",
         "titulo" => 'No has llenado todos los campos que son obligatorios',
         "icono" => "error"
@@ -104,7 +102,7 @@ class LoginController extends LoginModel
     }
 
     if (!filter_var($dataRegistro['email'], FILTER_VALIDATE_EMAIL)) {
-      return json_encode([
+      return ([
         "tipo" => "simple",
         "titulo" => 'El correo no es valido',
         "icono" => "error"
@@ -112,7 +110,7 @@ class LoginController extends LoginModel
     }
 
     if ($this->verifytEmail($dataRegistro['email'])) {
-      return json_encode([
+      return ([
         "tipo" => "simple",
         "titulo" => 'El correo ya se encuentra registrado',
         "icono" => "error"
@@ -120,7 +118,7 @@ class LoginController extends LoginModel
     }
 
     if ($dataRegistro['pass'] != $dataRegistro['pass2']) {
-      return json_encode([
+      return ([
         "tipo" => "simple",
         "titulo" => 'Las contraseñas no coinciden',
         "icono" => "error"
@@ -130,13 +128,13 @@ class LoginController extends LoginModel
     $passHash = $this->encryptPassword($dataRegistro['pass']);
 
     if ($this->registrar($dataRegistro, $passHash)) {
-      return json_encode([
+      return ([
         "tipo" => "simple",
         "titulo" => 'El usuario se ha registrado correctamente',
         "icono" => "success"
       ]);
     } else {
-      return json_encode("error");
+      return ("error");
     }
   }
 

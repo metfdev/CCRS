@@ -4,6 +4,8 @@ ini_set('session.gc_maxlifetime', 250);
 ini_set('session.cookie_lifetime', 0);
 ini_set('session.use_strict_mode', 1);
 ob_start();
+
+require_once "./Views/Inc/session.php";
 require_once "../config/app.php";
 require_once "../autoload.php";
 
@@ -34,6 +36,7 @@ if (isset($_GET['views'])) {
   if ($vista == "login" || $vista == "404") {
     require_once "./views/content/" . $vista . "-view.php";
   } else {
+
   ?>
     <main class="flex column grid-900 column-d-900 hg-100vh column-d-1200">
       <?php
