@@ -3,16 +3,14 @@
 require_once('../../Config/app.php');
 require_once('../../autoload.php');
 
-use App\Controllers\LoginController;
+if (isset($_POST['action'])) {
 
-if (isset($_POST['sesion'])) {
+  $insLogin = new App\Controllers\LoginController();
 
-  $insLogin = new LoginController();
-
-  if (isset($_POST['login'])) {
-    $user = $_POST['user'];
+  if ($_POST['action'] == "login") {
+    $email = $_POST['email'];
     $pass = $_POST['pass'];
-    echo $insLogin->iniciarSesion($user, $pass);
+    echo $insLogin->iniciarSesion($email, $pass);
   }
 
 }

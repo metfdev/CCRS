@@ -48,7 +48,7 @@
           </a>
         </li>
         <li class="aside-list">
-          <a href="<?php echo APP_URL; ?>" class="aside-enlance">
+          <a href="<?php echo APP_URL; ?>logout" class="aside-enlance">
             <div class="aside-List-Container">
               <img width="10px" src="<?php echo APP_URL; ?>Public/Views/Img/icons/cerrarSesion.png" alt="iconoCerrarSesion" class="aside-icono">
             </div>

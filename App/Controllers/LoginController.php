@@ -19,8 +19,10 @@ class LoginController extends LoginModel
   public function iniciarSesion($email, $pass)
   {
 
+    session_start();
+
     if (empty($email) || empty($pass)) {
-      return([
+      return json_encode([
         "tipo" => "simple",
         "titulo" => 'Error al iniciar sesion',
         "texto" => 'No has llenado todos los campos que son obligatorios',
@@ -29,7 +31,7 @@ class LoginController extends LoginModel
     };
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-      return([
+      return json_encode([
         "tipo" => "simple",
         "titulo" => 'Error al iniciar sesion',
         "texto" => 'El correo es incorrecto',
@@ -42,7 +44,7 @@ class LoginController extends LoginModel
     if ($userVerify['status'] == true) {
 
       if (!password_verify($pass, $userVerify['user'][0]['pass'])) {
-        return([
+        return json_encode([
           "tipo" => "simple",
           "titulo" => 'Error al iniciar sesion',
           "texto" => 'La contraseña es incorrecta',
@@ -57,14 +59,14 @@ class LoginController extends LoginModel
         $_SESSION['departamento'] = $userVerify['user'][0]['departamento'];
         $_SESSION['rol'] = $userVerify['user'][0]['rol'];
 
-        return([
+        return json_encode([
           "tipo" => "simple",
           "titulo" => 'Bienvenido ' . $userVerify['user'][0]['name'] . ' ' . $userVerify['user'][0]['last_name'],
           "icono" => "success",
         ]);
       }
     }else{
-      return([
+      return json_encode([
         "tipo" => "simple",
         "titulo" => 'Error al iniciar sesion',
         "texto" => 'Usuario no registrado',
@@ -85,7 +87,7 @@ class LoginController extends LoginModel
   {
 
     if (empty($dataRegistro)) {
-      return ([
+      return json_encode([
         "tipo" => "simple",
         "titulo" => 'No has llenado todos los campos que son obligatorios',
         "icono" => "error"
@@ -93,7 +95,7 @@ class LoginController extends LoginModel
     }
 
     if (empty($dataRegistro['nombre']) || empty($dataRegistro['apellido']) || empty($dataRegistro['cargo']) || empty($dataRegistro['departamento'])) {
-      return ([
+      return json_encode([
         "tipo" => "simple",
         "titulo" => 'No has llenado todos los campos que son obligatorios',
         "icono" => "error"
@@ -101,7 +103,7 @@ class LoginController extends LoginModel
     }
 
     if (!filter_var($dataRegistro['email'], FILTER_VALIDATE_EMAIL)) {
-      return ([
+      return json_encode([
         "tipo" => "simple",
         "titulo" => 'El correo no es valido',
         "icono" => "error"
@@ -109,7 +111,7 @@ class LoginController extends LoginModel
     }
 
     if ($this->verifytEmail($dataRegistro['email'])) {
-      return ([
+      return json_encode([
         "tipo" => "simple",
         "titulo" => 'El correo ya se encuentra registrado',
         "icono" => "error"
@@ -117,7 +119,7 @@ class LoginController extends LoginModel
     }
 
     if ($dataRegistro['pass'] != $dataRegistro['pass2']) {
-      return ([
+      return json_encode([
         "tipo" => "simple",
         "titulo" => 'Las contraseñas no coinciden',
         "icono" => "error"
@@ -127,13 +129,13 @@ class LoginController extends LoginModel
     $passHash = $this->encryptPassword($dataRegistro['pass']);
 
     if ($this->registrar($dataRegistro, $passHash)) {
-      return ([
+      return json_encode([
         "tipo" => "simple",
         "titulo" => 'El usuario se ha registrado correctamente',
         "icono" => "success"
       ]);
     } else {
-      return ("error");
+      return json_encode("error");
     }
   }
 
@@ -160,11 +162,10 @@ class LoginController extends LoginModel
   {
     session_unset();
     session_destroy();
-    return json_encode([
-      "tipo" => "simple",
-      "titulo" => 'Sesion cerrada correctamente',
-      "icono" => "success",
-      "url" => "login"
-    ]);
+    if (headers_sent()) {
+      echo "<script> window.location.href='" . APP_URL . "'; </script>";
+    } else {
+      header("Location: " . APP_URL);
+    }
   }
 }
