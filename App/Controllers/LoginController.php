@@ -60,7 +60,7 @@ class LoginController extends LoginModel
         $_SESSION['rol'] = $userVerify['user'][0]['rol'];
 
         return json_encode([
-          "tipo" => "simple",
+          "tipo" => "info",
           "titulo" => 'Bienvenido ' . $userVerify['user'][0]['name'] . ' ' . $userVerify['user'][0]['last_name'],
           "icono" => "success",
         ]);

@@ -14,7 +14,7 @@ class viewsModel
    */
   protected function obtenerVistasModelo($vista)
   {
-    $listaBlanca = ["home","detalles","logout"];
+    $listaBlanca = ["home", "detalles", "logout"];
 
     if (in_array($vista, $listaBlanca)) {
       if (is_file("./Views/Content/" . $vista . "-view.php")) {
@@ -22,6 +22,8 @@ class viewsModel
       } else {
         $contenido = "404";
       }
+    } elseif ($vista == "recovery") {
+      $contenido = "recovery";
     } elseif ($vista == "login" || $vista == "index") {
       $contenido = "login";
     } else {

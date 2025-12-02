@@ -10,7 +10,7 @@
     </div>
     <div class="login-form-group-buttons">
       <button>Login</button>
-      <a href="<?php echo APP_URL; ?>recover">¿Olvido su contraseña?</a>
+      <a href="<?php echo APP_URL; ?>recovery">¿Olvido su contraseña?</a>
     </div>
   </form>
 </section>

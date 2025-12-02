@@ -35,8 +35,8 @@ if (isset($_GET['views'])) {
   $insLogin = new LoginController();
   $viewsController = new viewsController();
   $vista = $viewsController->obtenerVistasControlador($url[0]);
-  if ($vista == "login" || $vista == "404") {
-    require_once "./views/content/" . $vista . "-view.php";
+  if ($vista == "login" || $vista == "404" || $vista == "recovery") {
+    require_once "./views/Content/" . $vista . "-view.php";
   } else {
 
   ?>

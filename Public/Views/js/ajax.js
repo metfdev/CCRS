@@ -55,6 +55,15 @@ function alertas_ajax(alerta){
             confirmButtonText: 'Aceptar'
         });
 
+    }else if(alerta.tipo=="info"){
+
+        Swal.fire({
+            icon: alerta.icono,
+            title: alerta.titulo,
+            text: alerta.texto,
+            showConfirmButton: false,
+        });
+
     }else if(alerta.tipo=="recargar"){
 
         Swal.fire({

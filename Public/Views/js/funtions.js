@@ -16,12 +16,14 @@ if (document.getElementById("login-form")){
           alertas_ajax(json);
           setTimeout(() => {
             window.location.href = "./home";
-          }, 1000);
+          }, 1500);
         } else {
           alertas_ajax(json);
         }
       });
   });
+
+
 
 }
 
