@@ -40,7 +40,7 @@ if (isset($_GET['views'])) {
   } else {
 
   ?>
-    <main>
+    <main id="main">
       <?php
       if ((!isset($_SESSION['id']) || $_SESSION['id'] == "") || (!isset($_SESSION['user']) || $_SESSION['user'] == "") || (!isset($_SESSION['rol']) || $_SESSION['rol'] == "")) {
         $insLogin->cerrarSesion();
@@ -48,7 +48,8 @@ if (isset($_GET['views'])) {
       }
       require_once "./Views/Inc/aside.php";
       ?>
-      <section>
+      <section class="content-section-principal" >
+        <div class="content"></div>
         <?php
         require_once $vista;
         ?>

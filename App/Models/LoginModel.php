@@ -89,4 +89,23 @@ class LoginModel extends MainModel
     }
     return false;
   }
+
+  /**
+   * Funcion para generar un codigo aleatorio
+   *
+   * @var string $key - Codigo generado
+   * @var string $pattern - Patron para generar el codigo
+   * @var integer $max - Longitud del patron
+   *
+   * @return string $key - Regresa un string con el codigo generado
+  */
+  protected function generarCodigo()
+  {
+    $key = '';
+    $pattern = '1234567890abcdefghijklmnopqrstuvwxyz';
+    for ($i = 1; $i <= 7; $i++) {
+      $key .= $pattern[rand(0, strlen($pattern) - 1)];
+    }
+    return $key;
+  }
 }

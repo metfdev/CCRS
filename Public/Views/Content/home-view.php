@@ -5,29 +5,22 @@
     -
     <?php echo $_SESSION['cargo']; ?>
   </h1>
-  <div>
-    <table>
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Apellido</th>
-          <th>Correo</th>
-          <th>Cargo</th>
-          <th>Departamento</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Nombre</td>
-          <td>Apellido</td>
-          <td>Correo</td>
-          <td>Cargo</td>
-          <td>Departamento</td>
-          <td>Acciones</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="home-resumen">
+    <h2 class="home-resumen-title">Resumen:</h2>
+    <ul class="home-resumen-list">
+      <li>
+        <p>Pendientes:</p>
+        <span></span>
+      </li>
+      <li>
+        <p>Aprobadas:</p>
+        <span></span>
+      </li>
+      <li>
+        <p>Rechazadas:</p>
+        <span></span>
+      </li>
+    </ul>
   </div>
 
 </section>

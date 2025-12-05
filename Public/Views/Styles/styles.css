@@ -18,10 +18,10 @@ main {
 }
 
 /*
-  Estilos para Login
+  Estilos para Login y Recovery
 */
 
-.login {
+.login, .recovery {
   width: 100%;
   height: 100vh;
   display: flex;
@@ -34,7 +34,7 @@ main {
   background-attachment: fixed;
 }
 
-.login .login-form {
+.login .login-form, .recovery .recovery-form {
   width: 500px;
   padding: 2rem 4rem;
   backdrop-filter: blur(5px);
@@ -47,25 +47,26 @@ main {
   gap: 2rem;
 }
 
-.login .login-form-title {
+.login .login-form-title, .recovery .recovery-form-title {
   font-size: 2rem;
   text-align: center;
   color: var(--colorPrincipal);
 }
 
-.login .login-form-group {
+.login .login-form-group, .recovery .recovery-form-group {
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
   width: 100%;
 }
 
-.login .login-form-group label {
+.login .login-form-group label, .recovery .recovery-form-group label {
   font-size: 1.2rem;
   margin-left: 0.5rem;
   color: var(--colorPrincipal);
 }
 
-.login .login-form-group input {
+.login .login-form-group input, .recovery .recovery-form-group input {
   padding: 0 1rem;
   border-radius: 50px;
   border: none;
@@ -75,7 +76,7 @@ main {
   color: var(--colorPrincipal);
 }
 
-.login .login-form-group-buttons {
+.login .login-form-group-buttons, .recovery .recovery-form-group-buttons {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -83,7 +84,7 @@ main {
   gap: 1rem;
 }
 
-.login .login-form-group-buttons button {
+.login .login-form-group-buttons button, .recovery .recovery-form-group-buttons button {
   padding: 0.5rem 1.5rem;
   border-radius: 10px;
   border: none;
@@ -202,20 +203,31 @@ main {
 }
 
 /*
-  Estilos para Home
+  Estilos para pages
 */
+.content-seection-principal{
+  position: relative;
+}
+.content{
+  background-image: url("../img/fondo.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.4;
+  position: absolute;
+  top: 0;
+  right:0;
+  width: 86%;
+  height: 100%;
+  z-index: -1;
+}
 
-.home-section {
+.home-section, .cotizar-section, .listados-section, .ajustes-section, .perfil-section {
   width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: start;
-  background-image: url("../img/fondo.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   padding: 2rem;
-  opacity: 0.4;
 }

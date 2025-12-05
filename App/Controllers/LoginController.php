@@ -3,9 +3,12 @@
 namespace App\Controllers;
 
 use App\Models\LoginModel;
+use App\Controllers\MailController;
+
 
 class LoginController extends LoginModel
 {
+
   /**
    * Funcion para iniciar sesion
    *
@@ -65,7 +68,7 @@ class LoginController extends LoginModel
           "icono" => "success",
         ]);
       }
-    }else{
+    } else {
       return json_encode([
         "tipo" => "simple",
         "titulo" => 'Error al iniciar sesion',
@@ -86,45 +89,45 @@ class LoginController extends LoginModel
   public function registrarUsuario($dataRegistro)
   {
 
-    if (empty($dataRegistro)) {
-      return json_encode([
-        "tipo" => "simple",
-        "titulo" => 'No has llenado todos los campos que son obligatorios',
-        "icono" => "error"
-      ]);
-    }
+    // if (empty($dataRegistro)) {
+    //   return json_encode([
+    //     "tipo" => "simple",
+    //     "titulo" => 'No has llenado todos los campos que son obligatorios',
+    //     "icono" => "error"
+    //   ]);
+    // }
 
-    if (empty($dataRegistro['nombre']) || empty($dataRegistro['apellido']) || empty($dataRegistro['cargo']) || empty($dataRegistro['departamento'])) {
-      return json_encode([
-        "tipo" => "simple",
-        "titulo" => 'No has llenado todos los campos que son obligatorios',
-        "icono" => "error"
-      ]);
-    }
+    // if (empty($dataRegistro['nombre']) || empty($dataRegistro['apellido']) || empty($dataRegistro['cargo']) || empty($dataRegistro['departamento'])) {
+    //   return json_encode([
+    //     "tipo" => "simple",
+    //     "titulo" => 'No has llenado todos los campos que son obligatorios',
+    //     "icono" => "error"
+    //   ]);
+    // }
 
-    if (!filter_var($dataRegistro['email'], FILTER_VALIDATE_EMAIL)) {
-      return json_encode([
-        "tipo" => "simple",
-        "titulo" => 'El correo no es valido',
-        "icono" => "error"
-      ]);
-    }
+    // if (!filter_var($dataRegistro['email'], FILTER_VALIDATE_EMAIL)) {
+    //   return json_encode([
+    //     "tipo" => "simple",
+    //     "titulo" => 'El correo no es valido',
+    //     "icono" => "error"
+    //   ]);
+    // }
 
-    if ($this->verifytEmail($dataRegistro['email'])) {
-      return json_encode([
-        "tipo" => "simple",
-        "titulo" => 'El correo ya se encuentra registrado',
-        "icono" => "error"
-      ]);
-    }
+    // if ($this->verifytEmail($dataRegistro['email'])) {
+    //   return json_encode([
+    //     "tipo" => "simple",
+    //     "titulo" => 'El correo ya se encuentra registrado',
+    //     "icono" => "error"
+    //   ]);
+    // }
 
-    if ($dataRegistro['pass'] != $dataRegistro['pass2']) {
-      return json_encode([
-        "tipo" => "simple",
-        "titulo" => 'Las contraseñas no coinciden',
-        "icono" => "error"
-      ]);
-    }
+    // if ($dataRegistro['pass'] != $dataRegistro['pass2']) {
+    //   return json_encode([
+    //     "tipo" => "simple",
+    //     "titulo" => 'Las contraseñas no coinciden',
+    //     "icono" => "error"
+    //   ]);
+    // }
 
     $passHash = $this->encryptPassword($dataRegistro['pass']);
 
@@ -150,6 +153,33 @@ class LoginController extends LoginModel
   {
     $pass = password_hash($pass, PASSWORD_DEFAULT);
     return $pass;
+  }
+
+  /**
+   * Funcion para verificar si el correo ya se encuentra registrado
+   *
+   * @param string $email Correo a verificar
+   * @return boolean Regresa true si el correo ya se encuentra registrado
+   *
+   */
+  public function recuperarContrasena($email)
+  {
+    $MailController = new MailController();
+    $userVerify = $this->getUser($email);
+    if ($userVerify['status'] == true) {
+      $token = $this->generarCodigo();
+      $mailRecovery = $MailController->sendMailRecovery($email, $token);
+
+      if ($mailRecovery == "Correo enviado exitosamente") {
+        return true;
+      }
+    } else {
+      return json_encode([
+        "tipo" => "simple",
+        "titulo" => 'El correo no se encuentra registrado',
+        "icono" => "error"
+      ]);
+    }
   }
 
   /**

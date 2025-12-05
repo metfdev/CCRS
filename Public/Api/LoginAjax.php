@@ -13,4 +13,9 @@ if (isset($_POST['action'])) {
     echo $insLogin->iniciarSesion($email, $pass);
   }
 
+  if ($_POST['action'] == "recovery") {
+    $email = $_POST['email'];
+    echo $insLogin->recuperarContrasena($email);
+  }
+
 }

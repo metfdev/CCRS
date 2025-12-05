@@ -10,8 +10,8 @@
 
   /*----------  Configuración de correo  ----------*/
   const MAIL_HOST="smtp.gmail.com";
-  const MAIL_USERNAME="mtfsystemservice@gmail.com";
-  const MAIL_PASS="nqsmkmzlpjtyvpke";
+  const MAIL_USERNAME="informacionccrs@gmail.com";
+  const MAIL_PASS="cyoexbrqmdwvhqxk";
   const MAIL_PORT=587;
 
 	/*----------  Configuración de moneda  ----------*/

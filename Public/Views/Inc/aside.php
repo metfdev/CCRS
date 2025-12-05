@@ -4,7 +4,7 @@
     <section>
       <ul class="aside-Menu">
         <li class="aside-list">
-          <a href="#" class="aside-enlance aside-enlace-Active">
+          <a href="home" id="home" class="aside-enlance aside-enlace-Active">
             <div class="aside-List-Container">
               <img width="10px" src="<?php echo APP_URL; ?>Public/Views/Img/icons/casa.png" alt="iconoHome" class="aside-icono">
             </div>
@@ -12,7 +12,7 @@
           </a>
         </li>
         <li class="aside-list">
-          <a href="#" class="aside-enlance">
+          <a href="cotizar" id="cotizar" class="aside-enlance">
             <div class="aside-List-Container">
               <img width="10px" src="<?php echo APP_URL; ?>Public/Views/Img/icons/solicitar.png" alt="iconoSolicitar" class="aside-icono">
             </div>
@@ -20,7 +20,7 @@
           </a>
         </li>
         <li class="aside-list">
-          <a href="#" class="aside-enlance">
+          <a href="listados" id="listados" class="aside-enlance">
             <div class="aside-List-Container">
               <img width="10px" src="<?php echo APP_URL; ?>Public/Views/Img/icons/portapapeles.png" alt="iconoPortapapeles" class="aside-icono">
             </div>
@@ -32,15 +32,15 @@
     <section>
       <ul class="aside-Menu">
         <li class="aside-list">
-          <a href="#" class="aside-enlance">
+          <a href="perfil" id="perfil" class="aside-enlance">
             <div class="aside-List-Container">
             <img width="10px" src="<?php echo APP_URL; ?>Public/Views/Img/icons/avatar.png" alt="iconoAvatar" class="aside-icono">
           </div>
-            Username
+            <?php echo $_SESSION['user']; ?>
           </a>
         </li>
         <li class="aside-list">
-          <a href="#" class="aside-enlance">
+          <a href="ajustes" id="ajustes" class="aside-enlance">
             <div class="aside-List-Container">
               <img width="10px" src="<?php echo APP_URL; ?>Public/Views/Img/icons/ajuste.png" alt="iconoAjustes" class="aside-icono">
             </div>

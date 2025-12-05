@@ -5,6 +5,9 @@
     $archivo= __DIR__."/".$clase.".php";
     $archivo=str_replace("\\","/",$archivo);
 
+    $ruta= __DIR__."/";
+    $ruta=str_replace("\\","/",$ruta);
+
     if(is_file($archivo)){
       require_once $archivo;
     }else {
