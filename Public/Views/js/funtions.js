@@ -57,18 +57,66 @@ if(document.getElementById("main")){
 document.addEventListener("DOMContentLoaded", () => {
   getLink();
 
+  document.getElementById("exportar-listados").addEventListener("click", exportar_listados);
+
+
+
 });
 
 }
 
+/**
+ * @description Funcion para detectar link de aside
+ *
+ * @return void
+ */
 function getLink() {
-  link = window.location.href;
-  url = link.split("/");
-  desactive = document.querySelector(".aside-enlace-Active");
+  let link = window.location.href;
+  let url = link.split("/");
+  let desactive = document.querySelector(".aside-enlace-Active");
   desactive.classList.remove("aside-enlace-Active");
-  select = document.querySelector("#" + url[4]);
+  let select = document.querySelector("#" + url[4]);
   select.classList.add("aside-enlace-Active");
 }
 
+/**
+ * @description Funcion para exportar los listados de las cotizaciones en formato pdf
+ *
+ */
+function exportar_listados() {
+
+  let datos = document.getElementById("tbody-listados");
+
+  let listados = [];
+
+  for (let i = 0; i < datos.children.length; i++) {
+    listados.push({
+      "id": datos.children[i].children[0].innerHTML,
+      "marca": datos.children[i].children[1].innerHTML,
+      "modelo": datos.children[i].children[2].innerHTML,
+      "ano": datos.children[i].children[3].innerHTML,
+      "version": datos.children[i].children[4].innerHTML,
+      "precio": datos.children[i].children[5].innerHTML,
+    });
+  }
+
+  formData = new FormData();
+  formData.append("listados", JSON.stringify(listados));
+
+  fetch("./libraries/pdf/listados-pdf.php", {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => response.blob())
+    .then((blob) => {
+      let url = window.URL.createObjectURL(blob);
+      let a = document.createElement("a");
+      a.href = url;
+      a.download = "listados.pdf";
+      a.click();
+    });
+
+
+}
 
 

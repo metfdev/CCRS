@@ -6,6 +6,7 @@
 * Date:    2019-12-07                                                          *
 * Author:  Olivier PLATHEY                                                     *
 *******************************************************************************/
+namespace libraries\pdf;
 
 define('FPDF_VERSION','1.82');
 

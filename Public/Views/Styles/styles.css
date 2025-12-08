@@ -21,7 +21,8 @@ main {
   Estilos para Login y Recovery
 */
 
-.login, .recovery {
+.login,
+.recovery {
   width: 100%;
   height: 100vh;
   display: flex;
@@ -34,7 +35,8 @@ main {
   background-attachment: fixed;
 }
 
-.login .login-form, .recovery .recovery-form {
+.login .login-form,
+.recovery .recovery-form {
   width: 500px;
   padding: 2rem 4rem;
   backdrop-filter: blur(5px);
@@ -47,26 +49,30 @@ main {
   gap: 2rem;
 }
 
-.login .login-form-title, .recovery .recovery-form-title {
+.login .login-form-title,
+.recovery .recovery-form-title {
   font-size: 2rem;
   text-align: center;
   color: var(--colorPrincipal);
 }
 
-.login .login-form-group, .recovery .recovery-form-group {
+.login .login-form-group,
+.recovery .recovery-form-group {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   width: 100%;
 }
 
-.login .login-form-group label, .recovery .recovery-form-group label {
+.login .login-form-group label,
+.recovery .recovery-form-group label {
   font-size: 1.2rem;
   margin-left: 0.5rem;
   color: var(--colorPrincipal);
 }
 
-.login .login-form-group input, .recovery .recovery-form-group input {
+.login .login-form-group input,
+.recovery .recovery-form-group input {
   padding: 0 1rem;
   border-radius: 50px;
   border: none;
@@ -76,7 +82,8 @@ main {
   color: var(--colorPrincipal);
 }
 
-.login .login-form-group-buttons, .recovery .recovery-form-group-buttons {
+.login .login-form-group-buttons,
+.recovery .recovery-form-group-buttons {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -84,7 +91,8 @@ main {
   gap: 1rem;
 }
 
-.login .login-form-group-buttons button, .recovery .recovery-form-group-buttons button {
+.login .login-form-group-buttons button,
+.recovery .recovery-form-group-buttons button {
   padding: 0.5rem 1.5rem;
   border-radius: 10px;
   border: none;
@@ -178,7 +186,7 @@ main {
   }
 }
 
-.aside-enlace-Active{
+.aside-enlace-Active {
   color: white;
   text-decoration: underline;
 }
@@ -205,10 +213,10 @@ main {
 /*
   Estilos para pages
 */
-.content-seection-principal{
+.content-section-principal {
   position: relative;
 }
-.content{
+.content {
   background-image: url("../img/fondo.png");
   background-size: cover;
   background-position: center;
@@ -216,13 +224,19 @@ main {
   opacity: 0.4;
   position: absolute;
   top: 0;
-  right:0;
-  width: 86%;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
   height: 100%;
   z-index: -1;
 }
 
-.home-section, .cotizar-section, .listados-section, .ajustes-section, .perfil-section {
+.home-section,
+.cotizar-section,
+.listados-section,
+.ajustes-section,
+.perfil-section {
   width: 100%;
   height: 100vh;
   display: flex;
@@ -230,4 +244,412 @@ main {
   justify-content: start;
   align-items: start;
   padding: 2rem;
+}
+
+/*
+  Estilos para page Cotizar
+*/
+.cotizar-form {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.cotizar-form-container {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 4rem;
+  padding: 4rem;
+  background: var(--colorSecundario);
+  border-radius: 50px;
+
+  & input,
+  textarea {
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    padding: 1rem;
+    font-size: 1.2rem;
+
+    & ::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+
+  & input:disabled {
+    background-color: #bebebe;
+    font-weight: bold;
+  }
+
+  & label {
+    font-size: 1.2rem;
+    padding: 0 0.5rem;
+    font-weight: bold;
+  }
+}
+
+.cotizar-header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+
+  & .cotizar-header-fecha {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 0.5rem;
+
+    & input {
+      text-align: center;
+    }
+  }
+}
+
+.cotizar-header-solicitante {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: 2rem;
+
+  & div {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 0.5rem;
+  }
+
+  & .nro {
+    width: 100px;
+  }
+
+  & .dpto {
+    width: 150px;
+    text-align: center;
+  }
+}
+
+.cotizar-main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 3rem;
+
+  & .cotizar-main-contenedor {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 0.8fr;
+    gap: 2rem;
+    justify-content: start;
+    align-items: start;
+  }
+
+  & .cotizar-main-contenedor-left {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 2rem;
+  }
+
+  & .cotizar-main-contenedor-right {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 2rem;
+    padding: 0.5rem;
+
+    & table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: var(--colorPrincipal);
+      color: white;
+
+      & th,
+      td {
+        border: 1px solid var(--colorSecundario);
+        padding: 0.5rem;
+        text-align: center;
+        color: white;
+      }
+    }
+  }
+}
+
+.contenedor-datos-cliente {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 1rem;
+
+  & div {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 0.5rem;
+  }
+
+  & .input-ano {
+    width: 100px;
+  }
+}
+
+.contenedor-datos-repuestos {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 2rem;
+  padding-right: 0.8rem;
+
+  & div {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 0.5rem;
+  }
+
+  & .input-cantidad {
+    width: 100px;
+  }
+
+  & .button-agregar-repuesto {
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
+    font-family: "Times New Roman", Times, serif;
+    color: white;
+    background-color: var(--colorPrincipal);
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      filter: brightness(1.3);
+
+      & i {
+        transform: rotate(360deg);
+      }
+    }
+
+    &:active {
+      transform: scale(0.9);
+    }
+  }
+}
+
+.contenedor-notas {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: 0.5rem;
+
+  & .notas {
+    width: 100%;
+    height: 100px;
+  }
+}
+
+.form-container-buttons {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+
+  & button {
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
+    font-family: "Times New Roman", Times, serif;
+    color: white;
+    background-color: var(--colorPrincipal);
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      filter: brightness(1.3);
+    }
+
+    &:active {
+      transform: scale(0.9);
+    }
+  }
+
+  & .button-cotizar {
+    background: rgb(20, 154, 216);
+  }
+
+  & .button-limpiar {
+    background: rgb(209, 48, 48);
+  }
+}
+
+/*
+  Estilos para pagina listados
+*/
+
+.listados-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: 0.5rem;
+  padding: 2rem;
+}
+
+.listados-buscador{
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  border: 1px solid #2e2e2e;
+  padding: 0.5rem;
+  border-radius: 10px;
+
+  & input {
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
+    font-family: "Times New Roman", Times, serif;
+    color: black;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+
+  & button {
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
+    font-family: "Times New Roman", Times, serif;
+    color: #2e2e2e;
+    background: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+}
+
+.listados-table {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+
+  & .listados-button-exportar{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: end;
+    padding: 0.5rem 1rem;
+
+    & button {
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      font-family: "Times New Roman", Times, serif;
+      border: none;
+      outline: none;
+      color: white;
+      background-color: var(--colorPrincipal);
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        filter: brightness(1.3);
+      }
+
+      &:active {
+        transform: scale(0.9);
+      }
+
+      & i {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+
+  & table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--colorSecundario);
+    color: white;
+
+    & th {
+      background-color: var(--colorPrincipal);
+      border: 1px solid #bebebe;
+      padding: 0.5rem;
+      text-align: center;
+      color: white;
+    }
+
+    & td {
+      border: 1px solid  #bebebe;
+      padding: 0.5rem;
+      text-align: center;
+      color: black;
+
+      .button-table-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      & button {
+        background-color: var(--colorPrincipal);
+        border: 1px solid  #bebebe;
+        padding: 0.5rem;
+        text-align: center;
+        color: rgb(255, 255, 255);
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background-color: var(--colorSecundario);
+          color: black;
+        }
+      }
+    }
+  }
 }
