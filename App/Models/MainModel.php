@@ -41,7 +41,7 @@ class MainModel
   {
     $sql = $this->connect()->prepare($consulta);
     $sql->execute();
-    return $sql;
+    return $sql = $sql->fetchAll();
   }
 
   /**

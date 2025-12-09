@@ -1,72 +1,16 @@
-if (document.getElementById("login-form")){
-  document.getElementById("login-form").addEventListener("submit", function (e) {
-    e.preventDefault();
-    const formData = new FormData(this);
-    formData.append("action", "login");
+export {
+  getLink,
+  exportar_listados,
+  Resumen,
+  getNroCotizaciones,
+};
 
-    fetch("./Api/loginAjax.php", {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => response.text())
-      .then((data) => {
-        const json = JSON.parse(data);
-
-        if (json.icono == "success") {
-          alertas_ajax(json);
-          setTimeout(() => {
-            window.location.href = "./home";
-          }, 1500);
-        } else {
-          alertas_ajax(json);
-        }
-      });
-  });
-
-}
-
-if (document.getElementById("recovery-form")){
-  document.getElementById("recovery-form").addEventListener("submit", function (e) {
-    e.preventDefault();
-    const formData = new FormData(this);
-    formData.append("action", "recovery");
-
-    fetch("./Api/loginAjax.php", {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => response.text())
-      .then((data) => {
-        const json = JSON.parse(data);
-
-        console.log(json);
-
-        // if (json.icono == "success") {
-        //   alertas_ajax(json);
-        //   setTimeout(() => {
-        //     window.location.href = "./login";
-        //   }, 1500);
-        // } else {
-        //   alertas_ajax(json);
-        // }
-      });
-  });
-}
-
-if(document.getElementById("main")){
-document.addEventListener("DOMContentLoaded", () => {
-  getLink();
-
-  document.getElementById("exportar-listados").addEventListener("click", exportar_listados);
-
-
-
-});
-
-}
+const api = "./Api/";
 
 /**
  * @description Funcion para detectar link de aside
+ * @var string link, desactive, select
+ * @var array url
  *
  * @return void
  */
@@ -81,26 +25,30 @@ function getLink() {
 
 /**
  * @description Funcion para exportar los listados de las cotizaciones en formato pdf
+ * @var string datos
+ * @var array listados
+ * @var string id, marca, modelo, ano, version, precio
+ * @var FormData formData - Envio de datos
  *
+ * @return void
  */
 function exportar_listados() {
-
   let datos = document.getElementById("tbody-listados");
 
   let listados = [];
 
   for (let i = 0; i < datos.children.length; i++) {
     listados.push({
-      "id": datos.children[i].children[0].innerHTML,
-      "marca": datos.children[i].children[1].innerHTML,
-      "modelo": datos.children[i].children[2].innerHTML,
-      "ano": datos.children[i].children[3].innerHTML,
-      "version": datos.children[i].children[4].innerHTML,
-      "precio": datos.children[i].children[5].innerHTML,
+      id: datos.children[i].children[0].innerHTML,
+      marca: datos.children[i].children[1].innerHTML,
+      modelo: datos.children[i].children[2].innerHTML,
+      ano: datos.children[i].children[3].innerHTML,
+      version: datos.children[i].children[4].innerHTML,
+      precio: datos.children[i].children[5].innerHTML,
     });
   }
 
-  formData = new FormData();
+  const formData = new FormData();
   formData.append("listados", JSON.stringify(listados));
 
   fetch("./libraries/pdf/listados-pdf.php", {
@@ -115,8 +63,41 @@ function exportar_listados() {
       a.download = "listados.pdf";
       a.click();
     });
-
-
 }
 
+/**
+ * @description Funcion para obtener el resumen de las cotizaciones
+ * @var FormData formData - Envio de datos
+ *
+ * @return void
+ *
+ */
+function Resumen() {
+  const formData = new FormData();
+  formData.append("action", "resumen");
 
+  fetch(api + "cotizacionAjax.php", {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      document.getElementById("pendientes").innerHTML = data.pendiente;
+      document.getElementById("aprobadas").innerHTML = data.aprobado;
+      document.getElementById("rechazadas").innerHTML = data.rechazado;
+    });
+}
+
+function getNroCotizaciones(){
+  const formData = new FormData();
+    formData.append("action", "conteo");
+
+    fetch(api + "cotizacionAjax.php", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        document.getElementById("nro").value = data;
+      });
+}
