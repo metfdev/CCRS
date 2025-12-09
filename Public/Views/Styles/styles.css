@@ -99,7 +99,6 @@ main {
   border: none;
   outline: none;
   font-size: 1.2rem;
-  font-family: "Times New Roman", Times, serif;
   color: white;
   background-color: var(--colorPrincipal);
   font-weight: bold;
@@ -502,7 +501,6 @@ main {
     border: none;
     outline: none;
     font-size: 1.2rem;
-    font-family: "Times New Roman", Times, serif;
     color: white;
     background-color: var(--colorPrincipal);
     font-weight: bold;
@@ -551,7 +549,6 @@ main {
     border: none;
     outline: none;
     font-size: 1.2rem;
-    font-family: "Times New Roman", Times, serif;
     color: white;
     background-color: var(--colorPrincipal);
     font-weight: bold;
@@ -605,7 +602,6 @@ main {
     outline: none;
     background-color: transparent;
     font-size: 1.2rem;
-    font-family: "Times New Roman", Times, serif;
     color: black;
     font-weight: bold;
     transition: all 0.3s ease;
@@ -615,7 +611,6 @@ main {
     border: none;
     outline: none;
     font-size: 1.2rem;
-    font-family: "Times New Roman", Times, serif;
     color: #2e2e2e;
     background: none;
     font-weight: bold;
@@ -643,7 +638,6 @@ main {
       padding: 0.5rem 1rem;
       border-radius: 10px;
       font-size: 1.2rem;
-      font-family: "Times New Roman", Times, serif;
       border: none;
       outline: none;
       color: white;

@@ -11,6 +11,7 @@
             Inicio
           </a>
         </li>
+        <?php if($_SESSION['departamento'] == "Servicio"): ?>
         <li class="aside-list">
           <a href="cotizar" id="cotizar" class="aside-enlance">
             <div class="aside-List-Container">
@@ -19,6 +20,7 @@
             Cotizar
           </a>
         </li>
+        <?php endif; ?>
         <li class="aside-list">
           <a href="listados" id="listados" class="aside-enlance">
             <div class="aside-List-Container">
@@ -37,14 +39,6 @@
             <img width="10px" src="<?php echo APP_URL; ?>Public/Views/Img/icons/avatar.png" alt="iconoAvatar" class="aside-icono">
           </div>
             <?php echo $_SESSION['user']; ?>
-          </a>
-        </li>
-        <li class="aside-list">
-          <a href="ajustes" id="ajustes" class="aside-enlance">
-            <div class="aside-List-Container">
-              <img width="10px" src="<?php echo APP_URL; ?>Public/Views/Img/icons/ajuste.png" alt="iconoAjustes" class="aside-icono">
-            </div>
-            Ajustes
           </a>
         </li>
         <li class="aside-list">

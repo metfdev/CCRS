@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-12-2025 a las 13:06:51
+-- Tiempo de generación: 09-12-2025 a las 21:03:20
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -33,7 +33,7 @@ CREATE TABLE `cotizaciones` (
   `departamento` varchar(200) NOT NULL,
   `nombre_cliente` varchar(200) NOT NULL,
   `modelo_carro` varchar(200) NOT NULL,
-  `año_carro` text NOT NULL,
+  `ano_carro` text NOT NULL,
   `placa_carro` text NOT NULL,
   `vin_carro` text NOT NULL,
   `data_repuestos` text NOT NULL,
@@ -45,10 +45,11 @@ CREATE TABLE `cotizaciones` (
 -- Volcado de datos para la tabla `cotizaciones`
 --
 
-INSERT INTO `cotizaciones` (`id`, `id_users`, `departamento`, `nombre_cliente`, `modelo_carro`, `año_carro`, `placa_carro`, `vin_carro`, `data_repuestos`, `fecha`, `estado`) VALUES
+INSERT INTO `cotizaciones` (`id`, `id_users`, `departamento`, `nombre_cliente`, `modelo_carro`, `ano_carro`, `placa_carro`, `vin_carro`, `data_repuestos`, `fecha`, `estado`) VALUES
 (1, 3, 'Repuestos', 'Cliente prueba', 'Hilux', '2005', 'AD052CD', '11111111111111111', '{\"repuestos\":[\r\n{\r\n\"id\": 1,\r\n\"nro_parte\":00000888882222,\r\n\"nombre\": \"repuesto prueba1\",\r\n\"cantidad\": \"2\"\r\n},\r\n{\r\n\"id\": 2,\r\n\"nro_parte\":00000888882223,\r\n\"nombre\": \"repuesto prueba2\",\r\n\"cantidad\": \"3\"\r\n},\r\n{\r\n\"id\": 3,\r\n\"nro_parte\":00000888882224,\r\n\"nombre\": \"repuesto prueba3\",\r\n\"cantidad\": \"1\"\r\n},\r\n{\r\n\"id\": 4,\r\n\"nro_parte\":00000888882225,\r\n\"nombre\": \"repuesto prueba4\",\r\n\"cantidad\": \"4\"\r\n}\r\n]\r\n}', '2025-12-01', 'aprobado'),
 (2, 2, 'Repuestos', 'Cliente prueba', 'Hilux', '2025', 'AD052BN', '11111111111111111', '{\"repuestos\":[\r\n{\r\n\"id\": 1,\r\n\"nro_parte\":00000888882222,\r\n\"nombre\": \"repuesto prueba1\",\r\n\"cantidad\": \"2\"\r\n},\r\n{\r\n\"id\": 2,\r\n\"nro_parte\":00000888882223,\r\n\"nombre\": \"repuesto prueba2\",\r\n\"cantidad\": \"3\"\r\n},\r\n{\r\n\"id\": 3,\r\n\"nro_parte\":00000888882224,\r\n\"nombre\": \"repuesto prueba3\",\r\n\"cantidad\": \"1\"\r\n},\r\n{\r\n\"id\": 4,\r\n\"nro_parte\":00000888882225,\r\n\"nombre\": \"repuesto prueba4\",\r\n\"cantidad\": \"4\"\r\n}\r\n]\r\n}', '2025-10-14', 'pendiente'),
-(3, 2, 'Repuestos', 'Cliente prueba', 'Hilux', '2025', 'AD052BN', '11111111111111111', '{\"repuestos\":[\r\n{\r\n\"id\": 1,\r\n\"nro_parte\":00000888882222,\r\n\"nombre\": \"repuesto prueba1\",\r\n\"cantidad\": \"2\"\r\n},\r\n{\r\n\"id\": 2,\r\n\"nro_parte\":00000888882223,\r\n\"nombre\": \"repuesto prueba2\",\r\n\"cantidad\": \"3\"\r\n},\r\n{\r\n\"id\": 3,\r\n\"nro_parte\":00000888882224,\r\n\"nombre\": \"repuesto prueba3\",\r\n\"cantidad\": \"1\"\r\n},\r\n{\r\n\"id\": 4,\r\n\"nro_parte\":00000888882225,\r\n\"nombre\": \"repuesto prueba4\",\r\n\"cantidad\": \"4\"\r\n}\r\n]\r\n}', '2025-09-16', 'rechazado');
+(3, 2, 'Repuestos', 'Cliente prueba', 'Hilux', '2025', 'AD052BN', '11111111111111111', '{\"repuestos\":[\r\n{\r\n\"id\": 1,\r\n\"nro_parte\":00000888882222,\r\n\"nombre\": \"repuesto prueba1\",\r\n\"cantidad\": \"2\"\r\n},\r\n{\r\n\"id\": 2,\r\n\"nro_parte\":00000888882223,\r\n\"nombre\": \"repuesto prueba2\",\r\n\"cantidad\": \"3\"\r\n},\r\n{\r\n\"id\": 3,\r\n\"nro_parte\":00000888882224,\r\n\"nombre\": \"repuesto prueba3\",\r\n\"cantidad\": \"1\"\r\n},\r\n{\r\n\"id\": 4,\r\n\"nro_parte\":00000888882225,\r\n\"nombre\": \"repuesto prueba4\",\r\n\"cantidad\": \"4\"\r\n}\r\n]\r\n}', '2025-09-16', 'rechazado'),
+(4, 3, 'Repuestos', 'Cliente prueba', 'Hilux', '2025', 'AD052BN', '11111111111111111', '{\"repuestos\":[\r\n{\r\n\"id\": 1,\r\n\"nro_parte\":00000888882222,\r\n\"nombre\": \"repuesto prueba1\",\r\n\"cantidad\": \"2\"\r\n},\r\n{\r\n\"id\": 2,\r\n\"nro_parte\":00000888882223,\r\n\"nombre\": \"repuesto prueba2\",\r\n\"cantidad\": \"3\"\r\n},\r\n{\r\n\"id\": 3,\r\n\"nro_parte\":00000888882224,\r\n\"nombre\": \"repuesto prueba3\",\r\n\"cantidad\": \"1\"\r\n},\r\n{\r\n\"id\": 4,\r\n\"nro_parte\":00000888882225,\r\n\"nombre\": \"repuesto prueba4\",\r\n\"cantidad\": \"4\"\r\n}\r\n]\r\n}', '2025-09-16', 'pendiente');
 
 -- --------------------------------------------------------
 
@@ -100,7 +101,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `cotizaciones`
 --
 ALTER TABLE `cotizaciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `users`

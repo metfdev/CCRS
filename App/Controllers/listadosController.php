@@ -72,6 +72,7 @@ class listadosController extends listadosModel
     return date('d-m-Y', strtotime($fecha));
   }
 
+  
   public function listarFiltradosEstatus($filtro)
   {
     $insListados = new listadosModel();
