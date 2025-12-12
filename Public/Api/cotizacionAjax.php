@@ -15,4 +15,8 @@ if (isset($_POST['action'])) {
     echo $insContizacion->getNroCotizaciones();
   }
 
+  if ($_POST['action'] == "registrar") {
+    echo json_encode($insContizacion->registrarCotizacion());
+  }
+
 }

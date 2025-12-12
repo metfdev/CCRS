@@ -8,7 +8,7 @@ class listadosModel extends MainModel
 {
   public function listarAll()
   {
-    $sql = "SELECT * FROM cotizaciones";
+    $sql = "SELECT * FROM listados";
     $query = $this->connect()->prepare($sql);
     $query->execute();
     return $query->fetchAll();

@@ -21,30 +21,37 @@ class listadosController extends listadosModel
     $mainModel = new MainModel();
 
     foreach ($insListados->listarAll() as $cotizacion) {
-      $usuario = $mainModel->ejecutarConsulta('SELECT * FROM users WHERE id = ' . $cotizacion['id_users'].'');
+      $usuario_aprueba = $mainModel->ejecutarConsulta('SELECT * FROM users WHERE id = ' . $cotizacion['id_usuario_aprueba'].'');
+
+      $id_cotizacion = $mainModel->ejecutarConsulta('SELECT * FROM cotizaciones WHERE id = ' . $cotizacion['id_cotizacion'].'');
+
+      $usuario_creador = $mainModel->ejecutarConsulta('SELECT * FROM users WHERE id = ' . $id_cotizacion[0]['id_users'].'');
 
       $row = '
         <tr>
             <td>
-              ' . $cotizacion['id'] . '
+              ' . $cotizacion['id_cotizacion'] . '
             </td>
             <td>
-              ' . $this->formatearFecha($cotizacion['fecha']) . '
+              ' . $this->formatearFecha($id_cotizacion[0]['fecha']) . '
             </td>
             <td>
-              ' . $cotizacion['nombre_cliente'] . '
+              ' . $id_cotizacion[0]['nombre_cliente'] . '
             </td>
             <td>
-              ' . $cotizacion['placa_carro'] . '
+              ' . $id_cotizacion[0]['placa_carro'] . '
             </td>
             <td>
-              ' . $cotizacion['modelo_carro'] . '
+              ' . $id_cotizacion[0]['modelo_carro'] . '
             </td>
             <td>
-              ' . $cotizacion['ano_carro'] . '
+              ' . $id_cotizacion[0]['ano_carro'] . '
             </td>
             <td>
-              '.$usuario[0]['name'].' '.$usuario[0]['last_name'].'
+              '.$usuario_creador[0]['name'].' '.$usuario_creador[0]['last_name'].'
+            </td>
+            <td>
+              '.$usuario_aprueba[0]['name'].' '.$usuario_aprueba[0]['last_name'].'
             </td>
             <td>
               ' . $cotizacion['estado'] . '
@@ -72,12 +79,13 @@ class listadosController extends listadosModel
     return date('d-m-Y', strtotime($fecha));
   }
 
-  
+
   public function listarFiltradosEstatus($filtro)
   {
     $insListados = new listadosModel();
     return $insListados->listarFiltrados($filtro);
   }
+
 
   public function listarBuscador($busqueda)
   {

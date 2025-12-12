@@ -16,7 +16,7 @@ class cotizacionController extends cotizacionModel
    */
   public function calculoResumen()
   {
-    $cotizaciones = $this->getResumen();
+    $cotizaciones = $this->getResumenModel();
 
     $pendiente = 0;
     $aprobado = 0;
@@ -43,23 +43,33 @@ class cotizacionController extends cotizacionModel
    */
   public function getNroCotizaciones()
   {
-    $cotizaciones = $this->getResumen();
-    return count($cotizaciones);
+    $cotizaciones = $this->getNroCotizacionesModel();
+
+    foreach ($cotizaciones as $cotizacion) {
+      $cotizaciones = $cotizacion['last_insert_id()'];
+    }
+    print_r($cotizaciones);
+    // if ($cotizaciones == null || $cotizaciones == ""  || $cotizaciones == 0) {
+    //   return 1;
+    // }else{
+    //   return json_encode($cotizaciones);
+    // }
   }
 
   public function registrarCotizacion()
   {
 
     $fecha = $_POST['fecha'];
-    $idUsers = $_POST['idUsers'];
-    $nombreCliente = $_POST['nombreCliente'];
-    $modeloCarro = $_POST['modeloCarro'];
-    $anoCarro = $_POST['anoCarro'];
-    $placaCarro = $_POST['placaCarro'];
-    $vinCarro = $_POST['vinCarro'];
-    $datosRepuestos = $_POST['datosRepuestos'];
+    $idCotizacion = $_POST['id_cotizacion'];
+    $idUsers = $_POST['solicitante'];
+    $nombreCliente = $_POST['cliente'];
+    $modeloCarro = $_POST['modelo'];
+    $anoCarro = $_POST['ano'];
+    $placaCarro = $_POST['placa'];
+    $vinCarro = $_POST['vin'];
+    $datosRepuestos = $_POST['repuestos'];
     $notas = $_POST['notas'];
-    $estado = $_POST['estado'];
+    $departamento = $_POST['departamento'];
 
     if (
       $nombreCliente == "" || $nombreCliente == null ||
@@ -67,8 +77,7 @@ class cotizacionController extends cotizacionModel
       $anoCarro == "" || $anoCarro == null ||
       $placaCarro == "" || $placaCarro == null ||
       $vinCarro == "" || $vinCarro == null ||
-      $notas == "" || $notas == null ||
-      $estado == "" || $estado == null
+      $notas == "" || $notas == null
     ) {
       return ([
         "tipo" => "simple",
@@ -95,7 +104,8 @@ class cotizacionController extends cotizacionModel
       ]);
     }
 
-    $datos = [
+    $datos_cotizacion = [
+      "idCotizacion" => $idCotizacion,
       "fecha" => $fecha,
       "idUsers" => $idUsers,
       "nombreCliente" => $nombreCliente,
@@ -105,23 +115,15 @@ class cotizacionController extends cotizacionModel
       "vinCarro" => $vinCarro,
       "datosRepuestos" => $datosRepuestos,
       "notas" => $notas,
-      "estado" => $estado
+      "departamento" => $departamento
     ];
 
-    if ($this->registrarCotizacionModel($datos)){
+    if ($this->registrarCotizacionModel($datos_cotizacion)) {
       return ([
-        "tipo" => "simple",
+        "tipo" => "info",
         "titulo" => "Cotizacion registrada con exito",
         "icono" => "success"
       ]);
     }
   }
-
-  public function addRepuesto()
-  {
-    $idRepuesto = $_POST['idRepuesto'];
-    $
-    $cantidad = $_POST['cantidad'];
-
-
 }

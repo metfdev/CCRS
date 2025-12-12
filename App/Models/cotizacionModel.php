@@ -7,9 +7,17 @@ use App\Models\MainModel;
 class cotizacionModel extends MainModel
 {
 
-  public function getResumen()
+  public function getResumenModel()
   {
-    $sql = "SELECT * FROM cotizaciones";
+    $sql = "SELECT * FROM listados";
+    $query = $this->connect()->prepare($sql);
+    $query->execute();
+    return $query->fetchAll();
+  }
+
+  public function getNroCotizacionesModel()
+  {
+    $sql = "SELECT MAX(id) AS max_id FROM cotizaciones";
     $query = $this->connect()->prepare($sql);
     $query->execute();
     return $query->fetchAll();
@@ -17,7 +25,7 @@ class cotizacionModel extends MainModel
 
   public function registrarCotizacionModel($datosRegistro) {
 
-    $sql = "INSERT INTO cotizaciones (id_users, departamento, nombre_cliente, modelo_carro, ano_carro, placa_carro, vin_carro, data_repuestos, notas,fecha, estado) VALUES ( :id_users, :departamento, :cliente, :modelo, :ano, :placa, :vin, :data_repuestos, :notas, :fecha, :estado)";
+    $sql = "INSERT INTO cotizaciones (id_users, departamento, nombre_cliente, modelo_carro, ano_carro, placa_carro, vin_carro, data_repuestos,fecha , nota) VALUES ( :id_users, :departamento, :cliente, :modelo, :ano, :placa, :vin, :data_repuestos, :fecha, :notas)";
     $query = $this->connect()->prepare($sql);
     $query->execute([
       'id_users' => $datosRegistro['idUsers'],
@@ -30,10 +38,11 @@ class cotizacionModel extends MainModel
       'data_repuestos' => $datosRegistro['datosRepuestos'],
       'notas' => $datosRegistro['notas'],
       'fecha' => $datosRegistro['fecha'],
-      'estado' => $datosRegistro['estado']
     ]);
 
-    if ($query) {
+    $addListados = $this->ejecutarConsulta("INSERT INTO listados (id_cotizacion, estado) VALUES ( ".$datosRegistro['idCotizacion'].", 'Pendiente')");
+
+    if ($query && $addListados) {
       return true;
       exit;
     }

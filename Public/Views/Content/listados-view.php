@@ -22,6 +22,7 @@
             <th>Placa</th>
             <th>Año</th>
             <th>Creador</th>
+            <th>Vendedor</th>
             <th>Estado</th>
             <th>Acciones</th>
           </tr>

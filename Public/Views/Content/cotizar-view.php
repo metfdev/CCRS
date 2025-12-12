@@ -3,7 +3,7 @@
     <?php $_SESSION['departamento'] == 'Repuestos' ? print('Cotizaciones') : print('Cotizar');  ?>
   </h1>
   <?php if ($_SESSION['departamento'] == 'Servicio') : ?>
-    <form class="cotizar-form">
+    <form id="cotizar-form" class="cotizar-form">
       <div class="cotizar-form-container">
         <header class="cotizar-header">
           <div class="cotizar-header-solicitante">
@@ -12,8 +12,9 @@
               <input class="nro" type="text" name="nro" id="nro" disabled>
             </div>
             <div>
-              <label for="solictante">Solicitante:</label>
-              <input type="text" name="solictante" id="solictante" value="<?php echo $_SESSION['user']; ?>" disabled>
+              <label for="solicitante">Solicitante:</label>
+              <input type="hidden" id="id_solicitante" value="<?php echo $_SESSION['id']; ?>" disabled>
+              <input type="text" name="solicitante" id="solicitante" value="<?php echo $_SESSION['user']; ?>" disabled>
             </div>
             <div>
               <label for="dpto">Dpto.:</label>
@@ -45,7 +46,7 @@
             </div>
             <div>
               <label for="vin">VIN:</label>
-              <input type="text" name="vin" id="vin">
+              <input type="text" name="vin" id="vin" maxlength="17" minlength="17">
             </div>
           </div>
           <section class="cotizar-main-contenedor">
@@ -79,9 +80,10 @@
                     <th>Nro. parte</th>
                     <th>Nombre</th>
                     <th>Cantidad</th>
+                    <th>Accion</th>
                   </tr>
                 </thead>
-                <tbody id="tbody"></tbody>
+                <tbody id="tbody_cotizacion_repuestos"></tbody>
               </table>
             </div>
           </section>

@@ -247,8 +247,8 @@ main {
   overflow-y: auto;
 }
 
-.home-section{
-  gap: 10rem
+.home-section {
+  gap: 10rem;
 }
 
 /*
@@ -289,7 +289,7 @@ main {
 
       & p {
         color: var(--colorPrincipal);
-        font-weight:600;
+        font-weight: 600;
         font-size: 20px;
       }
 
@@ -338,7 +338,6 @@ main {
       -webkit-appearance: none;
       margin: 0;
     }
-
   }
 
   & input:disabled {
@@ -418,6 +417,7 @@ main {
     gap: 2rem;
     justify-content: start;
     align-items: start;
+    overflow: hidden;
   }
 
   & .cotizar-main-contenedor-left {
@@ -431,25 +431,52 @@ main {
 
   & .cotizar-main-contenedor-right {
     width: 100%;
+    max-height: 244px;
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: start;
     gap: 2rem;
     padding: 0.5rem;
+    overflow-y: auto;
+
 
     & table {
       width: 100%;
       border-collapse: collapse;
-      background-color: var(--colorPrincipal);
       color: white;
 
-      & th,
-      td {
-        border: 1px solid var(--colorSecundario);
+      & th {
+        border: 1px solid var(--colorPrincipal);
+        background-color: var(--colorPrincipal);
         padding: 0.5rem;
         text-align: center;
         color: white;
+      }
+
+
+      & td {
+        border: 1px solid var(--colorPrincipal);
+        background-color: var(--colorSecundario);
+        padding: 0.5rem;
+        text-align: center;
+        color: black;
+
+        & button {
+          background-color: var(--colorPrincipal);
+          border: 1px solid #bebebe;
+          padding: 0.5rem;
+          text-align: center;
+          color: rgb(255, 255, 255);
+          border-radius: 10px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+
+          &:hover {
+            background-color: var(--colorSecundario);
+            color: black;
+          }
+        }
       }
     }
   }
@@ -588,7 +615,7 @@ main {
   padding: 2rem;
 }
 
-.listados-buscador{
+.listados-buscador {
   display: flex;
   flex-direction: row;
   justify-content: start;
@@ -626,7 +653,7 @@ main {
   justify-content: start;
   align-items: start;
 
-  & .listados-button-exportar{
+  & .listados-button-exportar {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -674,7 +701,7 @@ main {
     }
 
     & td {
-      border: 1px solid  #bebebe;
+      border: 1px solid #bebebe;
       padding: 0.5rem;
       text-align: center;
       color: black;
@@ -685,21 +712,21 @@ main {
         justify-content: center;
         align-items: center;
         gap: 1rem;
-      }
 
-      & button {
-        background-color: var(--colorPrincipal);
-        border: 1px solid  #bebebe;
-        padding: 0.5rem;
-        text-align: center;
-        color: rgb(255, 255, 255);
-        border-radius: 10px;
-        cursor: pointer;
-        transition: all 0.3s ease;
+        & button {
+          background-color: var(--colorPrincipal);
+          border: 1px solid #bebebe;
+          padding: 0.5rem;
+          text-align: center;
+          color: rgb(255, 255, 255);
+          border-radius: 10px;
+          cursor: pointer;
+          transition: all 0.3s ease;
 
-        &:hover {
-          background-color: var(--colorSecundario);
-          color: black;
+          &:hover {
+            background-color: var(--colorSecundario);
+            color: black;
+          }
         }
       }
     }

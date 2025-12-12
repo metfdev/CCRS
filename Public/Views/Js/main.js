@@ -3,6 +3,9 @@ import {
   exportar_listados,
   Resumen,
   getNroCotizaciones,
+  add_repuestos_a_cotizar,
+  delete_item,
+  cotizar,
 } from "./funtions.js";
 
 if (document.getElementById("login-form")) {
@@ -77,6 +80,43 @@ if (document.getElementById("main")) {
 
     if (document.querySelector(".cotizar-form")) {
       getNroCotizaciones();
+
+      document
+        .getElementById("cotizar-form")
+        .addEventListener("submit", (e) => {
+          e.preventDefault();
+          let dataCotizacion = [
+            {
+              nro_cotizacion: document.getElementById("nro").value,
+              solicitante: document.getElementById("id_solicitante").value,
+              dpto: document.getElementById("dpto").value,
+              fecha: document.getElementById("fecha").value,
+              cliente: document.getElementById("cliente").value,
+              modelo: document.getElementById("modelo").value,
+              ano: document.getElementById("ano").value,
+              placa: document.getElementById("placa").value,
+              vin: document.getElementById("vin").value,
+              repuestos: JSON.parse(localStorage.getItem("repuestos")),
+              notas: document.getElementById("notas").value,
+            },
+          ];
+          cotizar(dataCotizacion);
+        });
+
+      document
+        .getElementById("button-agregar-repuestos")
+        .addEventListener("click", (e) => {
+          e.preventDefault();
+          add_repuestos_a_cotizar();
+          document
+            .querySelectorAll(".button-eliminar-repuestos")
+            .forEach((boton) => {
+              boton.addEventListener("click", (e) => {
+                e.preventDefault();
+                delete_item(boton.getAttribute("id"));
+              });
+            });
+        });
     }
   });
 }
