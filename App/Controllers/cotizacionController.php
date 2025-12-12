@@ -122,6 +122,7 @@ class cotizacionController extends cotizacionModel
     $idRepuesto = $_POST['idRepuesto'];
     $
     $cantidad = $_POST['cantidad'];
+  }
 
 
 }
