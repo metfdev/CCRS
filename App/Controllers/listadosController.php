@@ -14,18 +14,27 @@ class listadosController extends listadosModel
    *
    * @return string $row - Retorna la informacion de las cotizaciones
    *
-  */
-  public function listarAll()
+   */
+  public function listarAll($id = null)
   {
     $insListados = new listadosModel();
     $mainModel = new MainModel();
 
-    foreach ($insListados->listarAll() as $cotizacion) {
-      $usuario_aprueba = $mainModel->ejecutarConsulta('SELECT * FROM users WHERE id = ' . $cotizacion['id_usuario_aprueba'].'');
+    $cotizaciones = $id == null ? $insListados->listarAll() : $insListados->listarPendientes();
 
-      $id_cotizacion = $mainModel->ejecutarConsulta('SELECT * FROM cotizaciones WHERE id = ' . $cotizacion['id_cotizacion'].'');
+    foreach ( $cotizaciones as $cotizacion) {
+      if ($cotizacion['id_usuario_aprueba'] == null) {
+        $usuario_aprueba[0]['name'] = 'No ha sido';
+        $usuario_aprueba[0]['last_name'] = 'aprobado';
+      } else {
+        $usuario_aprueba = $mainModel->ejecutarConsulta('SELECT * FROM users WHERE id = ' . $cotizacion['id_usuario_aprueba'] . '');
+      }
 
-      $usuario_creador = $mainModel->ejecutarConsulta('SELECT * FROM users WHERE id = ' . $id_cotizacion[0]['id_users'].'');
+      $id_cotizacion = $mainModel->ejecutarConsulta('SELECT * FROM cotizaciones WHERE id = ' . $cotizacion['id_cotizacion'] . '');
+
+      $usuario_creador = $mainModel->ejecutarConsulta('SELECT * FROM users WHERE id = ' . $id_cotizacion[0]['id_users'] . '');
+
+      $icono_table = $cotizacion['id_usuario_aprueba'] == null && $cotizacion['estado'] == 'pendiente' ? '<i class="fas fa-check"></i>' : '<i class="fas fa-eye"></i>';
 
       $row = '
         <tr>
@@ -48,17 +57,17 @@ class listadosController extends listadosModel
               ' . $id_cotizacion[0]['ano_carro'] . '
             </td>
             <td>
-              '.$usuario_creador[0]['name'].' '.$usuario_creador[0]['last_name'].'
+              ' . $usuario_creador[0]['name'] . ' ' . $usuario_creador[0]['last_name'] . '
             </td>
             <td>
-              '.$usuario_aprueba[0]['name'].' '.$usuario_aprueba[0]['last_name'].'
+              ' . $usuario_aprueba[0]['name'] . ' ' . $usuario_aprueba[0]['last_name'] . '
             </td>
             <td>
               ' . $cotizacion['estado'] . '
             </td>
             <td>
               <div class="button-table-container">
-                <button href="#"><i class="fas fa-eye"></i></button>
+                <button href="#">'. $icono_table .'</button>
                 <button href="#"><i class="fas fa-trash-alt"></i></button>
               </div>
             </td>
@@ -74,8 +83,9 @@ class listadosController extends listadosModel
    * @var string $fecha - Informacion de la fecha
    *
    * @return string $fecha - Retorna la informacion de la fecha
-  */
-  private function formatearFecha($fecha){
+   */
+  private function formatearFecha($fecha)
+  {
     return date('d-m-Y', strtotime($fecha));
   }
 

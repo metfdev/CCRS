@@ -23,7 +23,8 @@ class cotizacionModel extends MainModel
     return $query->fetchAll();
   }
 
-  public function registrarCotizacionModel($datosRegistro) {
+  public function registrarCotizacionModel($datosRegistro)
+  {
 
     $sql = "INSERT INTO cotizaciones (id_users, departamento, nombre_cliente, modelo_carro, ano_carro, placa_carro, vin_carro, data_repuestos,fecha , nota) VALUES ( :id_users, :departamento, :cliente, :modelo, :ano, :placa, :vin, :data_repuestos, :fecha, :notas)";
     $query = $this->connect()->prepare($sql);
@@ -40,13 +41,16 @@ class cotizacionModel extends MainModel
       'fecha' => $datosRegistro['fecha'],
     ]);
 
-    $addListados = $this->ejecutarConsulta("INSERT INTO listados (id_cotizacion, estado) VALUES ( ".$datosRegistro['idCotizacion'].", 'Pendiente')");
+    $addListados = "INSERT INTO listados (id_cotizacion, estado) VALUES ( :id_cotizacion, 'pendiente')";
+    $query2 = $this->connect()->prepare($addListados);
+    $query2->execute([
+      'id_cotizacion' => $datosRegistro['idCotizacion']
+    ]);
 
-    if ($query && $addListados) {
+    if ($query && $query2) {
       return true;
       exit;
     }
     return false;
-
   }
 }

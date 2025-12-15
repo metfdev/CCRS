@@ -46,14 +46,9 @@ class cotizacionController extends cotizacionModel
     $cotizaciones = $this->getNroCotizacionesModel();
 
     foreach ($cotizaciones as $cotizacion) {
-      $cotizaciones = $cotizacion['last_insert_id()'];
+      $ultima_cotizacion = $cotizacion['max_id'] + 1;
     }
-    print_r($cotizaciones);
-    // if ($cotizaciones == null || $cotizaciones == ""  || $cotizaciones == 0) {
-    //   return 1;
-    // }else{
-    //   return json_encode($cotizaciones);
-    // }
+    return $ultima_cotizacion;
   }
 
   public function registrarCotizacion()
@@ -123,6 +118,12 @@ class cotizacionController extends cotizacionModel
         "tipo" => "info",
         "titulo" => "Cotizacion registrada con exito",
         "icono" => "success"
+      ]);
+    }else{
+      return ([
+        "tipo" => "simple",
+        "titulo" => 'Error al registrar la cotizacion',
+        "icono" => "error"
       ]);
     }
   }

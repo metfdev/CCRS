@@ -213,14 +213,13 @@ function cotizar(dataCotizacion) {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
-      // if (data.icono == "success") {
-      //   alertas_ajax(data);
-      //   setTimeout(() => {
-      //     window.location.href = "./cotizar";
-      //   }, 1500);
-      // }else{
-      //   alertas_ajax(data);
-      // }
+      if (data.icono == "success") {
+        alertas_ajax(data);
+        setTimeout(() => {
+          window.location.href = "./cotizar";
+        }, 1500);
+      }else{
+        alertas_ajax(data);
+      }
     });
 }

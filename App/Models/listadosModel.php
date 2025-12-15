@@ -14,6 +14,14 @@ class listadosModel extends MainModel
     return $query->fetchAll();
   }
 
+  public function listarPendientes()
+  {
+    $sql = "SELECT * FROM listados WHERE estado = 'pendiente'";
+    $query = $this->connect()->prepare($sql);
+    $query->execute();
+    return $query->fetchAll();
+  }
+
   public function listarFiltrados($filtro)
   {
     $sql = "SELECT * FROM cotizaciones WHERE estado = :filtro";

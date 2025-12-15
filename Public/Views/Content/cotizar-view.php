@@ -1,3 +1,10 @@
+<?php
+
+use App\Controllers\listadosController;
+
+$listados = new listadosController();
+?>
+
 <section class="cotizar-section">
   <h1 class="cotizar-titulo">
     <?php $_SESSION['departamento'] == 'Repuestos' ? print('Cotizaciones') : print('Cotizar');  ?>
@@ -95,6 +102,31 @@
       </div>
     </form>
   <?php else : ?>
-    <!-- Cotizaciones pendientes -->
+    <!-- Cotizaciones lado Repuestos -->
+    <section class="listados-section">
+      <div class="listados-container">
+        <section class="listados-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Numero</th>
+                <th>Fecha</th>
+                <th>Cliente</th>
+                <th>Modelo</th>
+                <th>Placa</th>
+                <th>Año</th>
+                <th>Creador</th>
+                <th>Vendedor</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-listados">
+              <?php echo $listados->listarAll(); ?>
+            </tbody>
+          </table>
+        </section>
+      </div>
+    </section>
   <?php endif; ?>
 </section>
