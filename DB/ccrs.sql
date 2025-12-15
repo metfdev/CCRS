@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-12-2025 a las 21:03:20
+-- Tiempo de generación: 15-12-2025 a las 04:23:24
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -37,19 +37,56 @@ CREATE TABLE `cotizaciones` (
   `placa_carro` text NOT NULL,
   `vin_carro` text NOT NULL,
   `data_repuestos` text NOT NULL,
-  `fecha` date NOT NULL,
-  `estado` varchar(11) NOT NULL
+  `fecha` text NOT NULL,
+  `nota` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `cotizaciones`
 --
 
-INSERT INTO `cotizaciones` (`id`, `id_users`, `departamento`, `nombre_cliente`, `modelo_carro`, `ano_carro`, `placa_carro`, `vin_carro`, `data_repuestos`, `fecha`, `estado`) VALUES
-(1, 3, 'Repuestos', 'Cliente prueba', 'Hilux', '2005', 'AD052CD', '11111111111111111', '{\"repuestos\":[\r\n{\r\n\"id\": 1,\r\n\"nro_parte\":00000888882222,\r\n\"nombre\": \"repuesto prueba1\",\r\n\"cantidad\": \"2\"\r\n},\r\n{\r\n\"id\": 2,\r\n\"nro_parte\":00000888882223,\r\n\"nombre\": \"repuesto prueba2\",\r\n\"cantidad\": \"3\"\r\n},\r\n{\r\n\"id\": 3,\r\n\"nro_parte\":00000888882224,\r\n\"nombre\": \"repuesto prueba3\",\r\n\"cantidad\": \"1\"\r\n},\r\n{\r\n\"id\": 4,\r\n\"nro_parte\":00000888882225,\r\n\"nombre\": \"repuesto prueba4\",\r\n\"cantidad\": \"4\"\r\n}\r\n]\r\n}', '2025-12-01', 'aprobado'),
-(2, 2, 'Repuestos', 'Cliente prueba', 'Hilux', '2025', 'AD052BN', '11111111111111111', '{\"repuestos\":[\r\n{\r\n\"id\": 1,\r\n\"nro_parte\":00000888882222,\r\n\"nombre\": \"repuesto prueba1\",\r\n\"cantidad\": \"2\"\r\n},\r\n{\r\n\"id\": 2,\r\n\"nro_parte\":00000888882223,\r\n\"nombre\": \"repuesto prueba2\",\r\n\"cantidad\": \"3\"\r\n},\r\n{\r\n\"id\": 3,\r\n\"nro_parte\":00000888882224,\r\n\"nombre\": \"repuesto prueba3\",\r\n\"cantidad\": \"1\"\r\n},\r\n{\r\n\"id\": 4,\r\n\"nro_parte\":00000888882225,\r\n\"nombre\": \"repuesto prueba4\",\r\n\"cantidad\": \"4\"\r\n}\r\n]\r\n}', '2025-10-14', 'pendiente'),
-(3, 2, 'Repuestos', 'Cliente prueba', 'Hilux', '2025', 'AD052BN', '11111111111111111', '{\"repuestos\":[\r\n{\r\n\"id\": 1,\r\n\"nro_parte\":00000888882222,\r\n\"nombre\": \"repuesto prueba1\",\r\n\"cantidad\": \"2\"\r\n},\r\n{\r\n\"id\": 2,\r\n\"nro_parte\":00000888882223,\r\n\"nombre\": \"repuesto prueba2\",\r\n\"cantidad\": \"3\"\r\n},\r\n{\r\n\"id\": 3,\r\n\"nro_parte\":00000888882224,\r\n\"nombre\": \"repuesto prueba3\",\r\n\"cantidad\": \"1\"\r\n},\r\n{\r\n\"id\": 4,\r\n\"nro_parte\":00000888882225,\r\n\"nombre\": \"repuesto prueba4\",\r\n\"cantidad\": \"4\"\r\n}\r\n]\r\n}', '2025-09-16', 'rechazado'),
-(4, 3, 'Repuestos', 'Cliente prueba', 'Hilux', '2025', 'AD052BN', '11111111111111111', '{\"repuestos\":[\r\n{\r\n\"id\": 1,\r\n\"nro_parte\":00000888882222,\r\n\"nombre\": \"repuesto prueba1\",\r\n\"cantidad\": \"2\"\r\n},\r\n{\r\n\"id\": 2,\r\n\"nro_parte\":00000888882223,\r\n\"nombre\": \"repuesto prueba2\",\r\n\"cantidad\": \"3\"\r\n},\r\n{\r\n\"id\": 3,\r\n\"nro_parte\":00000888882224,\r\n\"nombre\": \"repuesto prueba3\",\r\n\"cantidad\": \"1\"\r\n},\r\n{\r\n\"id\": 4,\r\n\"nro_parte\":00000888882225,\r\n\"nombre\": \"repuesto prueba4\",\r\n\"cantidad\": \"4\"\r\n}\r\n]\r\n}', '2025-09-16', 'pendiente');
+INSERT INTO `cotizaciones` (`id`, `id_users`, `departamento`, `nombre_cliente`, `modelo_carro`, `ano_carro`, `placa_carro`, `vin_carro`, `data_repuestos`, `fecha`, `nota`) VALUES
+(16, 2, 'Servicio', 'asdasdas', 'dasdasd', '322323', 'asd3233', 'asd23122222222222', '[{\"nroParte\":\"08000\",\"nombre\":\"prueba\",\"cantidad\":\"22\"},{\"nroParte\":\"12525prubea\",\"nombre\":\"prueba prueba\",\"cantidad\":\"2\"},{\"nroParte\":\"080005252ds\",\"nombre\":\"Prueba\",\"cantidad\":\"22\"},{\"nroParte\":\"232323233\",\"nombre\":\"dasdasd\",\"cantidad\":\"22\"},{\"nroParte\":\"23eqad\",\"nombre\":\"dasd232\",\"cantidad\":\"22\"}]', '12-12-2025', 'wdqwqdqwd'),
+(17, 2, 'Servicio', 'asdasdas', 'dasdasd', '322323', 'asd3233', 'asd23122222222222', '[{\"nroParte\":\"08000\",\"nombre\":\"prueba\",\"cantidad\":\"22\"},{\"nroParte\":\"12525prubea\",\"nombre\":\"prueba prueba\",\"cantidad\":\"2\"},{\"nroParte\":\"080005252ds\",\"nombre\":\"Prueba\",\"cantidad\":\"22\"},{\"nroParte\":\"232323233\",\"nombre\":\"dasdasd\",\"cantidad\":\"22\"},{\"nroParte\":\"23eqad\",\"nombre\":\"dasd232\",\"cantidad\":\"22\"}]', '12-12-2025', 'wdqwqdqwd'),
+(18, 2, 'Servicio', 'ASDDASD', 'ASDSADDSA', '2322', 'SADASDAS', '22222322222222222', '[{\"nroParte\":\"08000\",\"nombre\":\"prueba\",\"cantidad\":\"22\"},{\"nroParte\":\"12525prubea\",\"nombre\":\"prueba prueba\",\"cantidad\":\"2\"},{\"nroParte\":\"080005252ds\",\"nombre\":\"Prueba\",\"cantidad\":\"22\"},{\"nroParte\":\"232323233\",\"nombre\":\"dasdasd\",\"cantidad\":\"22\"},{\"nroParte\":\"23eqad\",\"nombre\":\"dasd232\",\"cantidad\":\"22\"},{\"nroParte\":\"ASDASD\",\"nombre\":\"W222\",\"cantidad\":\"222\"}]', '12-12-2025', 'ASDASDAS');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `listados`
+--
+
+CREATE TABLE `listados` (
+  `id` int(11) NOT NULL,
+  `id_cotizacion` int(11) NOT NULL,
+  `id_usuario_aprueba` int(11) NOT NULL,
+  `ids_repuestos` text NOT NULL,
+  `estado` varchar(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `listados`
+--
+
+INSERT INTO `listados` (`id`, `id_cotizacion`, `id_usuario_aprueba`, `ids_repuestos`, `estado`) VALUES
+(6, 1, 0, '', 'Pendiente'),
+(7, 1, 0, '', 'Pendiente');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `repuestos_aprobados`
+--
+
+CREATE TABLE `repuestos_aprobados` (
+  `id` int(11) NOT NULL,
+  `id_cotizacion` int(11) NOT NULL,
+  `id_usuario_aprueba` int(11) NOT NULL,
+  `nro_parte` text NOT NULL,
+  `nombre_repuesto` varchar(200) NOT NULL,
+  `cantidad_repuesto` int(11) NOT NULL,
+  `precio_repuesto` double(30,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 -- --------------------------------------------------------
 
@@ -88,6 +125,22 @@ ALTER TABLE `cotizaciones`
   ADD KEY `Solicitante` (`id_users`);
 
 --
+-- Indices de la tabla `listados`
+--
+ALTER TABLE `listados`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `usuario que aprueba` (`id_usuario_aprueba`) USING BTREE,
+  ADD KEY `cotizacion` (`id_cotizacion`) USING BTREE;
+
+--
+-- Indices de la tabla `repuestos_aprobados`
+--
+ALTER TABLE `repuestos_aprobados`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `cotizacion` (`id_cotizacion`),
+  ADD KEY `usuario que aprueba` (`id_usuario_aprueba`);
+
+--
 -- Indices de la tabla `users`
 --
 ALTER TABLE `users`
@@ -101,23 +154,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `cotizaciones`
 --
 ALTER TABLE `cotizaciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT de la tabla `listados`
+--
+ALTER TABLE `listados`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de la tabla `repuestos_aprobados`
+--
+ALTER TABLE `repuestos_aprobados`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `cotizaciones`
---
-ALTER TABLE `cotizaciones`
-  ADD CONSTRAINT `cotizaciones_ibfk_1` FOREIGN KEY (`id_users`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
