@@ -1,11 +1,11 @@
 <?php
 
   /*----------  Configuración de la app  ----------*/
-	const APP_URL= "http://localhost/CCRS/";
+	const APP_URL= "http://toyoriente.local/CCRS/";
 	const APP_NAME="Control de Cotizaciones";
 	const APP_LOCATE="Anaco, Venezuela";
   const APP_SESSION_NAME="POS";
-  const APP_LOGO = "http://localhost/CCRS/public/views/img/ToyorienteLogo.png";
+  const APP_LOGO = "http://toyoriente.local/CCRS/public/views/img/ToyorienteLogo.png";
   define('APP_PATH', realpath(__DIR__ . '/../') . '/');
 
   /*----------  Configuración de correo  ----------*/

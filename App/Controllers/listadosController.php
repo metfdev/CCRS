@@ -34,7 +34,10 @@ class listadosController extends listadosModel
 
       $usuario_creador = $mainModel->ejecutarConsulta('SELECT * FROM users WHERE id = ' . $id_cotizacion[0]['id_users'] . '');
 
-      $icono_table = $cotizacion['id_usuario_aprueba'] == null && $cotizacion['estado'] == 'pendiente' ? '<i class="fas fa-check"></i>' : '<i class="fas fa-eye"></i>';
+      $icono_table = $_SESSION['url'] == 'aprobacion' ? '<i class="fas fa-check"></i>' : '<i class="fas fa-eye"></i>';
+
+      $valores = $_SESSION['url'] == 'aprobacion' ? 'tl-tooltip="Aprobar" ts-id="' . $cotizacion['id_cotizacion'] . '"' : 'tl-tooltip="Ver" ts-id="' . $cotizacion['id_cotizacion'] . '"';
+
 
       $row = '
         <tr>
@@ -67,7 +70,7 @@ class listadosController extends listadosModel
             </td>
             <td>
               <div class="button-table-container">
-                <button href="#">'. $icono_table .'</button>
+                <button id="button-detalle" class="button-detalle"  '.$valores.' href="#">'. $icono_table .'</button>
                 <button href="#"><i class="fas fa-trash-alt"></i></button>
               </div>
             </td>
@@ -78,6 +81,8 @@ class listadosController extends listadosModel
       echo $row;
     }
   }
+
+
   /**
    * Funcion para formatear la fecha
    * @var string $fecha - Informacion de la fecha

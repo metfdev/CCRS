@@ -22,7 +22,7 @@
         </li>
         <?php else: ?>
           <li class="aside-list">
-          <a href="cotizar" id="cotizar" class="aside-enlance">
+          <a href="aprobacion" id="aprobacion" class="aside-enlance">
             <div class="aside-List-Container">
               <img width="10px" src="<?php echo APP_URL; ?>Public/Views/Img/icons/solicitar.png" alt="iconoSolicitar" class="aside-icono">
             </div>

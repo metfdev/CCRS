@@ -19,4 +19,9 @@ if (isset($_POST['action'])) {
     echo json_encode($insContizacion->registrarCotizacion());
   }
 
+  if ($_POST['action'] == "detalles") {
+    echo json_encode($insContizacion->detallesCotizacion($_POST['id'], $_POST['operacion']));
+  }
+
+  
 }

@@ -6,6 +6,7 @@ export {
   add_repuestos_a_cotizar,
   delete_item,
   cotizar,
+  getDetalles,
 };
 
 const api = "./Api/";
@@ -192,6 +193,16 @@ function delete_item(nroParte) {
   }
 }
 
+/**
+ * @description Funcion para registar la cotizacion
+ * @var formData -  Envio de datos
+ *
+ * @param {object} dataCotizacion - Informacion de la cotizacion
+ *  @var string fecha, nro_cotizacion, solicitante, cliente, modelo, ano, placa, vin, repuestos, notas, dpto
+ *
+ *
+ * @return void
+ */
 function cotizar(dataCotizacion) {
   let formData = new FormData();
   formData.append("action", "registrar");
@@ -215,11 +226,29 @@ function cotizar(dataCotizacion) {
     .then((data) => {
       if (data.icono == "success") {
         alertas_ajax(data);
+        localStorage.removeItem("repuestos");
         setTimeout(() => {
           window.location.href = "./cotizar";
         }, 1500);
-      }else{
+      } else {
         alertas_ajax(data);
       }
+    });
+}
+
+
+function getDetalles(id, operacion) {
+  let formData = new FormData();
+  formData.append("action", "detalles");
+  formData.append("id", id);
+  formData.append("operacion", operacion);
+
+  fetch(api + "cotizacionAjax.php", {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
     });
 }

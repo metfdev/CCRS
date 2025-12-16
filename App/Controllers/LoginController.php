@@ -89,45 +89,45 @@ class LoginController extends LoginModel
   public function registrarUsuario($dataRegistro)
   {
 
-    // if (empty($dataRegistro)) {
-    //   return json_encode([
-    //     "tipo" => "simple",
-    //     "titulo" => 'No has llenado todos los campos que son obligatorios',
-    //     "icono" => "error"
-    //   ]);
-    // }
+    if (empty($dataRegistro)) {
+      return json_encode([
+        "tipo" => "simple",
+        "titulo" => 'No has llenado todos los campos que son obligatorios',
+        "icono" => "error"
+      ]);
+    }
 
-    // if (empty($dataRegistro['nombre']) || empty($dataRegistro['apellido']) || empty($dataRegistro['cargo']) || empty($dataRegistro['departamento'])) {
-    //   return json_encode([
-    //     "tipo" => "simple",
-    //     "titulo" => 'No has llenado todos los campos que son obligatorios',
-    //     "icono" => "error"
-    //   ]);
-    // }
+    if (empty($dataRegistro['nombre']) || empty($dataRegistro['apellido']) || empty($dataRegistro['cargo']) || empty($dataRegistro['departamento'])) {
+      return json_encode([
+        "tipo" => "simple",
+        "titulo" => 'No has llenado todos los campos que son obligatorios',
+        "icono" => "error"
+      ]);
+    }
 
-    // if (!filter_var($dataRegistro['email'], FILTER_VALIDATE_EMAIL)) {
-    //   return json_encode([
-    //     "tipo" => "simple",
-    //     "titulo" => 'El correo no es valido',
-    //     "icono" => "error"
-    //   ]);
-    // }
+    if (!filter_var($dataRegistro['email'], FILTER_VALIDATE_EMAIL)) {
+      return json_encode([
+        "tipo" => "simple",
+        "titulo" => 'El correo no es valido',
+        "icono" => "error"
+      ]);
+    }
 
-    // if ($this->verifytEmail($dataRegistro['email'])) {
-    //   return json_encode([
-    //     "tipo" => "simple",
-    //     "titulo" => 'El correo ya se encuentra registrado',
-    //     "icono" => "error"
-    //   ]);
-    // }
+    if ($this->verifytEmail($dataRegistro['email'])) {
+      return json_encode([
+        "tipo" => "simple",
+        "titulo" => 'El correo ya se encuentra registrado',
+        "icono" => "error"
+      ]);
+    }
 
-    // if ($dataRegistro['pass'] != $dataRegistro['pass2']) {
-    //   return json_encode([
-    //     "tipo" => "simple",
-    //     "titulo" => 'Las contraseñas no coinciden',
-    //     "icono" => "error"
-    //   ]);
-    // }
+    if ($dataRegistro['pass'] != $dataRegistro['pass2']) {
+      return json_encode([
+        "tipo" => "simple",
+        "titulo" => 'Las contraseñas no coinciden',
+        "icono" => "error"
+      ]);
+    }
 
     $passHash = $this->encryptPassword($dataRegistro['pass']);
 

@@ -1,3 +1,12 @@
+<?php
+
+use App\Controllers\listadosController;
+
+$listados = new listadosController();
+$_SESSION['url'] = "listados";
+
+?>
+
 <section class="listados-section">
   <h1 class="text-center">Listados</h1>
   <div class="listados-container">
@@ -10,7 +19,7 @@
     <section class="listados-table">
       <div class="listados-button-exportar">
         <button id="exportar-listados"><i class="fas fa-file-export"></i>
-      Exportar</button>
+          Exportar</button>
       </div>
       <table>
         <thead>
@@ -29,8 +38,6 @@
         </thead>
         <tbody id="tbody-listados">
           <?php
-            use App\Controllers\listadosController;
-            $listados = new listadosController();
             $listados->listarAll();
           ?>
         </tbody>

@@ -6,6 +6,7 @@ import {
   add_repuestos_a_cotizar,
   delete_item,
   cotizar,
+  getDetalles,
 } from "./funtions.js";
 
 if (document.getElementById("login-form")) {
@@ -117,6 +118,18 @@ if (document.getElementById("main")) {
               });
             });
         });
+    }
+
+    if (document.querySelector(".listados-section")) {
+      let button = document.querySelectorAll(".button-detalle");
+      button.forEach((boton) => {
+        boton.addEventListener("click", (e) => {
+          e.preventDefault();
+          console.log(boton.getAttribute("ts-id"));
+          console.log(boton.getAttribute("tl-tooltip"));
+          getDetalles(boton.getAttribute("ts-id"), boton.getAttribute("tl-tooltip"));
+        });
+      })
     }
   });
 }

@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\cotizacionModel;
+use App\Models\MainModel;
 
 class cotizacionController extends cotizacionModel
 {
@@ -51,6 +52,15 @@ class cotizacionController extends cotizacionModel
     return $ultima_cotizacion;
   }
 
+  /**
+   * Registra una nueva cotizacion
+   * @var string $fecha , $idCotizacion , $idUsers , $nombreCliente , $modeloCarro , $anoCarro , $placaCarro , $vinCarro , $datosRepuestos , $notas, $departamento
+   * @var array $dataCotizacion
+   *
+   *
+   * @return json Regresa un json con la informacion de la accion
+   *
+   */
   public function registrarCotizacion()
   {
 
@@ -119,12 +129,128 @@ class cotizacionController extends cotizacionModel
         "titulo" => "Cotizacion registrada con exito",
         "icono" => "success"
       ]);
-    }else{
+    } else {
       return ([
         "tipo" => "simple",
         "titulo" => 'Error al registrar la cotizacion',
         "icono" => "error"
       ]);
+    }
+  }
+
+  public function detallesCotizacion($idCotizacion, $operacion)
+  {
+    $mainModel = new MainModel();
+    if ($operacion == "Ver") {
+      $cotizacion = $this->getDetallesCotizacionModel($idCotizacion);
+      foreach ($cotizacion as $detallesCotizacion) {
+        $id = $detallesCotizacion['id'];
+        $fecha = $detallesCotizacion['fecha'];
+        $idUsers = $detallesCotizacion['id_users'];
+        $nombreCliente = $detallesCotizacion['nombre_cliente'];
+        $modeloCarro = $detallesCotizacion['modelo_carro'];
+        $anoCarro = $detallesCotizacion['ano_carro'];
+        $placaCarro = $detallesCotizacion['placa_carro'];
+        $vinCarro = $detallesCotizacion['vin_carro'];
+        $datosRepuestos = $detallesCotizacion['datos_repuestos'];
+        $notas = $detallesCotizacion['notas'];
+        $departamento = $detallesCotizacion['departamento'];
+      }
+
+      $usuario = $mainModel->ejecutarConsulta("SELECT * FROM users WHERE id = :id", ["id" => $idUsers]);
+      foreach ($usuario as $user) {
+        $solicitante = $user['name'] + ' ' + $user['lastname'];
+      }
+
+      $datosRepuestos = json_decode($datosRepuestos);
+
+      $Detalles = '
+        <form id="Aprobacion-form" class="Aprobacion-form">
+          <div class="cotizar-form-container">
+            <header class="cotizar-header">
+              <div class="cotizar-header-solicitante">
+                <div>
+                  <label for="nro">Nro.:</label>
+                  <input class="nro" type="text" name="nro" id="nro" value="'.$id.'" disabled>
+                </div>
+                <div>
+                  <label for="solicitante">Solicitante:</label>
+                  <input type="hidden" id="id_solicitante" value= disabled>
+                  <input type="text" name="solicitante" id="solicitante" value="'.$solicitante.'" disabled>
+                </div>
+                <div>
+                  <label for="dpto">Dpto.:</label>
+                  <input class="dpto" type="text" name="dpto" id="dpto" value="'.$departamento.'" disabled>
+                </div>
+              </div>
+              <div class="cotizar-header-fecha">
+                <label for="fecha">Fecha:</label>
+                <input type="text" name="fecha" id="fecha" value="'.$fecha.'" disabled>
+              </div>
+            </header>
+            <section class="cotizar-main">
+              <div class="contenedor-datos-cliente">
+                <div>
+                  <label for="cliente">Cliente:</label>
+                  <input type="text" name="cliente" id="cliente" value="'.$nombreCliente.'" disabled>
+                </div>
+                <div>
+                  <label for="modelo">Modelo:</label>
+                  <input type="text" name="modelo" id="modelo" value="'.$modeloCarro.'" disabled >
+                </div>
+                <div>
+                  <label for="ano">Año:</label>
+                  <input class="input-ano" type="number" name="ano" id="ano" value="'.$anoCarro.'" disabled>
+                </div>
+                <div>
+                  <label for="placa">Placa:</label>
+                  <input type="text" name="placa" id="placa" value="'.$placaCarro.'" disabled>
+                </div>
+                <div>
+                  <label for="vin">VIN:</label>
+                  <input type="text" name="vin" id="vin" maxlength="17" minlength="17 value="'.$vinCarro.'" disabled">
+                </div>
+              </div>
+              <section class="cotizar-main-contenedor">
+                <div class="cotizar-main-contenedor-left">
+                  <div class="contenedor-notas">
+                    <label for="notas">Notas:</label>
+                    <textarea class="notas" type="text" name="notas" id="notas">'.$notas.'</textarea>
+                  </div>
+                </div>
+                <div class="cotizar-main-contenedor-right">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Nro. parte</th>
+                        <th>Nombre</th>
+                        <th>Cantidad</th>
+                        <th>Monto</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tbody_cotizacion_repuestos">
+                      <tr>
+                        <td>'.$datosRepuestos[0]->nroParte.'</td>
+                        <td>'.$datosRepuestos[0]->nombre.'</td>
+                        <td>'.$datosRepuestos[0]->cantidad.'</td>
+                        <td>0.00</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            </section>
+            <div class="form-container-buttons">
+              <button id="button-cotizar" class="button-cotizar">Exportar</button>
+              <button id="button-limpiar" class="button-limpiar">Cerrar</button>
+            </div>
+          </div>
+        </form>
+      ';
+      return $Detalles;
+    } elseif ($operacion == "aprobar") {
+      $cotizacion = $this->aprobarCotizacionModel($idCotizacion);
+      return $cotizacion;
     }
   }
 }

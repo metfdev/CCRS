@@ -53,4 +53,20 @@ class cotizacionModel extends MainModel
     }
     return false;
   }
+
+  public function getDetallesCotizacionModel($idCotizacion)
+  {
+    $sql = "SELECT * FROM cotizaciones WHERE id = :id_cotizacion";
+    $query = $this->connect()->prepare($sql);
+    $query->execute(['id_cotizacion' => $idCotizacion]);
+    return $query->fetchAll();
+  }
+
+  public function aprobarCotizacionModel($idCotizacion)
+  {
+    $sql = "UPDATE listados SET estado = 'aprobada' WHERE id_cotizacion = :id_cotizacion";
+    $query = $this->connect()->prepare($sql);
+    $query->execute(['id_cotizacion' => $idCotizacion]);
+    return $query->fetchAll();
+  }
 }

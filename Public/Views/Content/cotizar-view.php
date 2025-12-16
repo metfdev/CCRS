@@ -1,13 +1,6 @@
-<?php
-
-use App\Controllers\listadosController;
-
-$listados = new listadosController();
-?>
-
 <section class="cotizar-section">
   <h1 class="cotizar-titulo">
-    <?php $_SESSION['departamento'] == 'Repuestos' ? print('Cotizaciones') : print('Cotizar');  ?>
+    Cotizar
   </h1>
   <?php if ($_SESSION['departamento'] == 'Servicio') : ?>
     <form id="cotizar-form" class="cotizar-form">
@@ -45,11 +38,11 @@ $listados = new listadosController();
             </div>
             <div>
               <label for="ano">Año:</label>
-              <input class="input-ano" type="number" name="ano" id="ano">
+              <input class="input-ano" type="number" name="ano" id="ano" min="1900" max="<?php echo date('Y'); ?>"  pattern="[0-9]{4}">
             </div>
             <div>
               <label for="placa">Placa:</label>
-              <input type="text" name="placa" id="placa">
+              <input type="text" name="placa" id="placa" minlength="5" maxlength="5" pattern="[A-Z-0-9]{5}">
             </div>
             <div>
               <label for="vin">VIN:</label>
@@ -69,7 +62,7 @@ $listados = new listadosController();
                 </div>
                 <div>
                   <label for="cantidad">Cantidad:</label>
-                  <input class="input-cantidad" type="number" name="cantidad" id="cantidad">
+                  <input class="input-cantidad" type="number" name="cantidad" id="cantidad" min="1" max="100" pattern="[0-9]{1,2}">
                 </div>
                 <button id="button-agregar-repuestos" class="button-agregar-repuesto">
                   <i class="fa-solid fa-plus"></i>
@@ -101,32 +94,5 @@ $listados = new listadosController();
         </div>
       </div>
     </form>
-  <?php else : ?>
-    <!-- Cotizaciones lado Repuestos -->
-    <section class="listados-section">
-      <div class="listados-container">
-        <section class="listados-table">
-          <table>
-            <thead>
-              <tr>
-                <th>Numero</th>
-                <th>Fecha</th>
-                <th>Cliente</th>
-                <th>Modelo</th>
-                <th>Placa</th>
-                <th>Año</th>
-                <th>Creador</th>
-                <th>Vendedor</th>
-                <th>Estado</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody id="tbody-listados">
-              <?php echo $listados->listarAll(); ?>
-            </tbody>
-          </table>
-        </section>
-      </div>
-    </section>
   <?php endif; ?>
 </section>
