@@ -134,6 +134,7 @@ function add_repuestos_a_cotizar() {
       nroParte: nroParte,
       nombre: nombre,
       cantidad: cantidad,
+      monto: "00.00",
     });
     repuestos = repuestos_guardado;
   } else {
@@ -141,6 +142,7 @@ function add_repuestos_a_cotizar() {
       nroParte: nroParte,
       nombre: nombre,
       cantidad: cantidad,
+      monto: "00.00",
     });
   }
 
@@ -151,6 +153,7 @@ function add_repuestos_a_cotizar() {
       <td>${nroParte}</td>
       <td>${nombre}</td>
       <td>${cantidad}</td>
+      <td>00.00</td>
       <td>
         <button id="${nroParte}" class="button-eliminar-repuestos">
           <i class="fas fa-trash-alt"></i>
@@ -249,6 +252,14 @@ function getDetalles(id, operacion) {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+
+      if(data["icono"] == "error"){
+        alertas_ajax(data);
+      }else{
+        let list = document.getElementById("listados-section");
+
+        list.innerHTML = "";
+        list.innerHTML = data["Detalles"];
+      }
     });
 }

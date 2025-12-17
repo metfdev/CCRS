@@ -42,7 +42,7 @@
             </div>
             <div>
               <label for="placa">Placa:</label>
-              <input type="text" name="placa" id="placa" minlength="5" maxlength="5" pattern="[A-Z-0-9]{5}">
+              <input type="text" name="placa" id="placa" minlength="7" maxlength="7" pattern="[A-Z-0-9]{7}">
             </div>
             <div>
               <label for="vin">VIN:</label>
@@ -80,6 +80,7 @@
                     <th>Nro. parte</th>
                     <th>Nombre</th>
                     <th>Cantidad</th>
+                    <th>Monto</th>
                     <th>Accion</th>
                   </tr>
                 </thead>

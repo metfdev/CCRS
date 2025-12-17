@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title><?php echo APP_NAME; ?></title>
-<link rel="shortcut icon" href="<?php echo APP_URL; ?>Public/Views/img/logo.png" type="image/x-icon">
+<link rel="shortcut icon" href="<?php echo APP_URL; ?>Public/Views/img/logoCCRS.svg" type="image/x-icon">
 
 <link rel="stylesheet" href="<?php echo APP_URL; ?>Public/Views/Styles/styles.css">
 <link rel="stylesheet" href="<?php echo APP_URL; ?>Public/Views/Styles/sweetalert2.min.css">

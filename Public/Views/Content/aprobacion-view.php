@@ -6,7 +6,7 @@ $listados = new listadosController();
 
 $_SESSION['url'] = "aprobacion";
 ?>
-<section class="listados-section">
+<section class="listados-section" id="listados-section">
   <h1 class="cotizar-titulo">
     Aprobacion
   </h1>
@@ -28,7 +28,7 @@ $_SESSION['url'] = "aprobacion";
           </tr>
         </thead>
         <tbody id="tbody-listados">
-          <?php echo $listados->listarAll(); ?>
+          <?php echo $listados->listarAll(true); ?>
         </tbody>
       </table>
     </section>

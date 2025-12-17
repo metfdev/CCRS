@@ -7,16 +7,16 @@ $_SESSION['url'] = "listados";
 
 ?>
 
-<section class="listados-section">
-  <h1 class="text-center">Listados</h1>
-  <div class="listados-container">
-    <div class="listados-buscador">
+<section class="listados-section" id="listados-section">
+  <h1 class="text-center" id="title-listados">Listados</h1>
+  <div class="listados-container" id="listados-container">
+    <div class="listados-buscador" id="listados-buscador">
       <input type="text" name="buscador" id="buscador" placeholder="Buscar...">
       <button>
         <i class="fas fa-search"></i>
       </button>
     </div>
-    <section class="listados-table">
+    <section class="listados-table" id="listados-table">
       <div class="listados-button-exportar">
         <button id="exportar-listados"><i class="fas fa-file-export"></i>
           Exportar</button>
