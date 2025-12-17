@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-12-2025 a las 04:23:24
+-- Tiempo de generación: 17-12-2025 a las 21:55:39
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -46,9 +46,11 @@ CREATE TABLE `cotizaciones` (
 --
 
 INSERT INTO `cotizaciones` (`id`, `id_users`, `departamento`, `nombre_cliente`, `modelo_carro`, `ano_carro`, `placa_carro`, `vin_carro`, `data_repuestos`, `fecha`, `nota`) VALUES
-(16, 2, 'Servicio', 'asdasdas', 'dasdasd', '322323', 'asd3233', 'asd23122222222222', '[{\"nroParte\":\"08000\",\"nombre\":\"prueba\",\"cantidad\":\"22\"},{\"nroParte\":\"12525prubea\",\"nombre\":\"prueba prueba\",\"cantidad\":\"2\"},{\"nroParte\":\"080005252ds\",\"nombre\":\"Prueba\",\"cantidad\":\"22\"},{\"nroParte\":\"232323233\",\"nombre\":\"dasdasd\",\"cantidad\":\"22\"},{\"nroParte\":\"23eqad\",\"nombre\":\"dasd232\",\"cantidad\":\"22\"}]', '12-12-2025', 'wdqwqdqwd'),
-(17, 2, 'Servicio', 'asdasdas', 'dasdasd', '322323', 'asd3233', 'asd23122222222222', '[{\"nroParte\":\"08000\",\"nombre\":\"prueba\",\"cantidad\":\"22\"},{\"nroParte\":\"12525prubea\",\"nombre\":\"prueba prueba\",\"cantidad\":\"2\"},{\"nroParte\":\"080005252ds\",\"nombre\":\"Prueba\",\"cantidad\":\"22\"},{\"nroParte\":\"232323233\",\"nombre\":\"dasdasd\",\"cantidad\":\"22\"},{\"nroParte\":\"23eqad\",\"nombre\":\"dasd232\",\"cantidad\":\"22\"}]', '12-12-2025', 'wdqwqdqwd'),
-(18, 2, 'Servicio', 'ASDDASD', 'ASDSADDSA', '2322', 'SADASDAS', '22222322222222222', '[{\"nroParte\":\"08000\",\"nombre\":\"prueba\",\"cantidad\":\"22\"},{\"nroParte\":\"12525prubea\",\"nombre\":\"prueba prueba\",\"cantidad\":\"2\"},{\"nroParte\":\"080005252ds\",\"nombre\":\"Prueba\",\"cantidad\":\"22\"},{\"nroParte\":\"232323233\",\"nombre\":\"dasdasd\",\"cantidad\":\"22\"},{\"nroParte\":\"23eqad\",\"nombre\":\"dasd232\",\"cantidad\":\"22\"},{\"nroParte\":\"ASDASD\",\"nombre\":\"W222\",\"cantidad\":\"222\"}]', '12-12-2025', 'ASDASDAS');
+(1, 2, 'Servicio', 'Cliente prueba', 'modelo prueba', '2025', 'AA002ba', '11111111111111111', '[{\"nroParte\":\"prueba\",\"nombre\":\"prueb nombre\",\"cantidad\":\"55\",\"monto\":\"00.00\"},{\"nroParte\":\"prueba 2\",\"nombre\":\"prueba nombre 2\",\"cantidad\":\"1\",\"monto\":\"00.00\"}]', '15-12-2025', 'Nota de prueba i'),
+(2, 3, 'Servicio', 'Prueba 3', 'prueba', '2222', 'aa220aa', '11111111111111111', '[{\"nroParte\":\"prueba\",\"nombre\":\"prueba\",\"cantidad\":\"22\",\"monto\":\"00.00\"}]', '15-12-2025', 'prueba carga 1'),
+(3, 3, 'Servicio', 'cliente prueba', 'corolla', '2025', 'aa250er', '11111111111111111', '[{\"nroParte\":\"080055425\",\"nombre\":\"Prueba\",\"cantidad\":\"2\",\"monto\":\"00.00\"},{\"nroParte\":\"Prueba 3\",\"nombre\":\"PRueba 3\",\"cantidad\":\"3\",\"monto\":\"00.00\"},{\"nroParte\":\"0955025\",\"nombre\":\"PRuieba 4\",\"cantidad\":\"5\",\"monto\":\"00.00\"}]', '17-12-2025', 'carga inicial'),
+(4, 3, 'Servicio', 'PRUEBA 4', 'HILUX', '2024', 'AAA552S', '11111111111111111', '{\"nroParte\":\"PRUEBA\",\"nombre\":\"PRUEBA\",\"cantidad\":\"23\",\"monto\":\"00.00\"},{\"nroParte\":\"PRUEBA2\",\"nombre\":\"PRUEBA3\",\"cantidad\":\"3\",\"monto\":\"00.00\"}]', '17-12-2025', 'ASDASDASDASDASD'),
+(5, 3, 'Servicio', 'prueba 2', 'hilux', '2025', 'aa987ss', '22222222222222222', '[{\"nroParte\":\"0800525652\",\"nombre\":\"Repuesto prueba\",\"cantidad\":\"5\",\"monto\":\"00.00\"},{\"nroParte\":\"080025252\",\"nombre\":\"repuesto prueba 3\",\"cantidad\":\"5\",\"monto\":\"00.00\"},{\"nroParte\":\"0566525000\",\"nombre\":\"repuesto prueba \",\"cantidad\":\"9\",\"monto\":\"00.00\"}]', '17-12-2025', 'carga de prueba');
 
 -- --------------------------------------------------------
 
@@ -69,8 +71,11 @@ CREATE TABLE `listados` (
 --
 
 INSERT INTO `listados` (`id`, `id_cotizacion`, `id_usuario_aprueba`, `ids_repuestos`, `estado`) VALUES
-(6, 1, 0, '', 'Pendiente'),
-(7, 1, 0, '', 'Pendiente');
+(1, 1, 0, '', 'pendiente'),
+(2, 2, 0, '', 'rechazado'),
+(3, 3, 0, '', 'aprobado'),
+(4, 3, 0, '', 'pendiente'),
+(5, 5, 0, '', 'pendiente');
 
 -- --------------------------------------------------------
 
@@ -110,7 +115,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `last_name`, `email`, `pass`, `cargo`, `departamento`, `rol`) VALUES
-(2, 'Miguel', 'Ticaray', 'miguelticaray@gmail.com', '$2y$10$O4igYxv7X3a8BKpOyxFULucZCNmXhD4l9uT1i7gEaOxhqYFSMfO3O', 'Soporte Tecnico', 'Servicio', 'admin'),
+(2, 'Miguel', 'Ticaray', 'miguelticaray@gmail.com', '$2y$10$O4igYxv7X3a8BKpOyxFULucZCNmXhD4l9uT1i7gEaOxhqYFSMfO3O', 'Soporte Tecnico', 'Repuestos', 'admin'),
 (3, 'Aurelis', 'Dommar', 'aurelisdc21@gmail.com', '$2y$10$iSRsmwjoBhib6buD8iLXBe.lb.LvLqdKY7G.XEDFSwlCF8Q2KkMJW', 'Soporte Tecnico', 'Servicio', 'admin');
 
 --
@@ -154,13 +159,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `cotizaciones`
 --
 ALTER TABLE `cotizaciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `listados`
 --
 ALTER TABLE `listados`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `repuestos_aprobados`
