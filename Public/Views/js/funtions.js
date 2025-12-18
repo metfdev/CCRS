@@ -239,7 +239,6 @@ function cotizar(dataCotizacion) {
     });
 }
 
-
 function getDetalles(id, operacion) {
   let formData = new FormData();
   formData.append("action", "detalles");
@@ -252,14 +251,69 @@ function getDetalles(id, operacion) {
   })
     .then((response) => response.json())
     .then((data) => {
-
-      if(data["icono"] == "error"){
+      if (data["icono"] == "error") {
         alertas_ajax(data);
-      }else{
+      } else {
         let list = document.getElementById("listados-section");
 
         list.innerHTML = "";
         list.innerHTML = data["Detalles"];
+
+        actionsButton();
+      }
+    });
+}
+
+function actionsButton() {
+  if (document.getElementById("button-aprobar")) {
+    document.getElementById("button-aprobar").addEventListener("click", (e) => {
+      e.preventDefault();
+      console.log(document.getElementById("nro").value);
+      updateStatus(document.getElementById("nro").value, "aprobada");
+    });
+  }
+  if (document.getElementById("button-rechazar")) {
+    document
+      .getElementById("button-rechazar")
+      .addEventListener("click", (e) => {
+        e.preventDefault();
+        console.log(document.getElementById("nro").value);
+        updateStatus(document.getElementById("nro").value, "rechazada");
+      });
+  }
+  if (document.getElementById("button-cerrar")) {
+    document.getElementById("button-cerrar").addEventListener("click", (e) => {
+      e.preventDefault();
+      window.location.reload();
+    });
+    if (document.getElementById("button-exportar")) {
+      document
+        .getElementById("button-exportar")
+        .addEventListener("click", (e) => {
+          e.preventDefault();
+          console.log(document.getElementById("nro").value);
+          console.log("Exportar");
+        });
+    }
+  }
+}
+
+function updateStatus(id, status) {
+  let formData = new FormData();
+  formData.append("action", "updateStatus");
+  formData.append("id", id);
+  formData.append("status", status);
+
+  fetch(api + "cotizacionAjax.php", {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data["icono"] == "error") {
+        alertas_ajax(data);
+      } else {
+        alertas_ajax(data);
       }
     });
 }

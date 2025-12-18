@@ -69,4 +69,16 @@ class cotizacionModel extends MainModel
     $query->execute(['id_cotizacion' => $idCotizacion]);
     return $query->fetchAll();
   }
+
+  public function updateStatusCotizacionModel($idCotizacion, $status, $id_user)
+  {
+    $sql = "UPDATE listados SET estado = :status, id_usuario_aprueba = :id_user WHERE id_cotizacion = :id_cotizacion";
+    $query = $this->connect()->prepare($sql);
+    $query->execute(['status' => $status,'id_user' => $id_user, 'id_cotizacion' => $idCotizacion]);
+    if ($query) {
+      return true;
+      exit;
+    }
+    return false;
+  }
 }

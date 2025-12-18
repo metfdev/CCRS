@@ -246,7 +246,7 @@ class cotizacionController extends cotizacionModel
                           <td>' . $datosRepuestos[$i]->nroParte . '</td>
                           <td>' . $datosRepuestos[$i]->nombre . '</td>
                           <td>' . $datosRepuestos[$i]->cantidad . '</td>
-                          <td>' . $datosRepuestos[$i]->monto . '</td>
+                          <td class="monto_repuesto">' . $datosRepuestos[$i]->monto . '</td>
                         </tr>
                       </tbody>';
       }
@@ -257,8 +257,8 @@ class cotizacionController extends cotizacionModel
               </section>
             </section>
             <div class="form-container-buttons">
-              <button id="button-cotizar" class="button-cotizar">Exportar</button>
-              <button id="button-limpiar" class="button-limpiar">Cerrar</button>
+              <button id="button-exportar" class="button-cotizar">Exportar</button>
+              <button id="button-cerrar" class="button-limpiar">Cerrar</button>
             </div>
           </div>
         </div>
@@ -383,8 +383,9 @@ class cotizacionController extends cotizacionModel
               </section>
             </section>
             <div class="form-container-buttons">
-              <button id="button-cotizar" class="button-cotizar">Exportar</button>
-              <button id="button-limpiar" class="button-limpiar">Cerrar</button>
+              <button id="button-aprobar" class="button-cotizar">Aprobar</button>
+              <button id="button-rechazar" class="button-rechazar">Rechazar</button>
+              <button id="button-cerrar" class="button-limpiar">Cerrar</button>
             </div>
           </div>
         </div>
@@ -396,4 +397,24 @@ class cotizacionController extends cotizacionModel
       ]);
     }
   }
+
+
+  public function updateStatusCotizacion($id, $status)
+  {
+    session_start();
+    if($this->updateStatusCotizacionModel($id, $status, $_SESSION['id'])){
+      return ([
+        "icono" => "success",
+        "texto" => "Cotizacion " . $status,
+        "tipo" => "recargar"
+      ]);
+    }else{
+      return ([
+        "icono" => "error",
+        "texto" => "Error al " . $status,
+        "tipo" => "recargar"
+      ]);
+    }
+  }
+
 }

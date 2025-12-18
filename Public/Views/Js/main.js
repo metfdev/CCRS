@@ -125,9 +125,12 @@ if (document.getElementById("main")) {
       button.forEach((boton) => {
         boton.addEventListener("click", (e) => {
           e.preventDefault();
-          getDetalles(boton.getAttribute("ts-id"), boton.getAttribute("tl-tooltip"));
+          getDetalles(
+            boton.getAttribute("ts-id"),
+            boton.getAttribute("tl-tooltip")
+          );
         });
-      })
+      });
     }
   });
 }

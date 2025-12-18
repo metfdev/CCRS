@@ -612,6 +612,11 @@ main {
   & .button-limpiar {
     background: rgb(209, 48, 48);
   }
+
+  & .button-rechazar {
+    background: rgb(240, 123, 5);
+  }
+
 }
 
 /*
