@@ -268,9 +268,30 @@ function actionsButton() {
   if (document.getElementById("button-aprobar")) {
     document.getElementById("button-aprobar").addEventListener("click", (e) => {
       e.preventDefault();
-      console.log(document.getElementById("nro").value);
-      updateStatus(document.getElementById("nro").value, "aprobada");
+      const inputsMonto = document.querySelectorAll(".input-monto");
+      const montos = [];
+
+      inputsMonto.forEach((input, index) => {
+        montos.push({
+          nroParte: document.querySelectorAll("#tbody_cotizacion_repuestos tr")[
+            index
+          ].cells[0].textContent,
+          nombre: document.querySelectorAll("#tbody_cotizacion_repuestos tr")[
+            index
+          ].cells[1].textContent,
+          cantidad: document.querySelectorAll("#tbody_cotizacion_repuestos tr")[
+            index
+          ].cells[2].textContent,
+          monto: input.value,
+        });
+      });
+
+      const jsonMontos = JSON.stringify(montos);
+
+      console.log(jsonMontos);
+      updateStatus(document.getElementById("nro").value, "aprobada", jsonMontos);
     });
+
   }
   if (document.getElementById("button-rechazar")) {
     document
@@ -298,11 +319,12 @@ function actionsButton() {
   }
 }
 
-function updateStatus(id, status) {
+function updateStatus(id, status,repuestos=[]) {
   let formData = new FormData();
   formData.append("action", "updateStatus");
   formData.append("id", id);
   formData.append("status", status);
+  formData.append("repuestos", repuestos);
 
   fetch(api + "cotizacionAjax.php", {
     method: "POST",

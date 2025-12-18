@@ -71,11 +71,10 @@ class listadosController extends listadosModel
             <td>
               <div class="button-table-container">
                 <button id="button-detalle" class="button-detalle"  '.$valores.' href="#">'. $icono_table .'</button>
-                <button href="#"><i class="fas fa-trash-alt"></i></button>
+                <button class="button-delete"  href="#"><i class="fas fa-trash-alt"></i></button>
               </div>
             </td>
           </tr>
-
     ';
 
       echo $row;

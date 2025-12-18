@@ -122,6 +122,7 @@ if (document.getElementById("main")) {
 
     if (document.querySelector(".listados-section")) {
       let button = document.querySelectorAll(".button-detalle");
+      let button_delete = document.querySelectorAll(".button-delete");
       button.forEach((boton) => {
         boton.addEventListener("click", (e) => {
           e.preventDefault();

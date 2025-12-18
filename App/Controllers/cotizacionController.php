@@ -399,10 +399,10 @@ class cotizacionController extends cotizacionModel
   }
 
 
-  public function updateStatusCotizacion($id, $status)
+  public function updateStatusCotizacion($id, $status,$repuestos=[])
   {
     session_start();
-    if($this->updateStatusCotizacionModel($id, $status, $_SESSION['id'])){
+    if($this->updateStatusCotizacionModel($id, $status, $_SESSION['id'],$repuestos=[])){
       return ([
         "icono" => "success",
         "texto" => "Cotizacion " . $status,

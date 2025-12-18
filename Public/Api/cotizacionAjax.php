@@ -24,8 +24,7 @@ if (isset($_POST['action'])) {
   }
 
   if ($_POST['action'] == "updateStatus") {
-    echo json_encode($insContizacion->updateStatusCotizacion($_POST['id'], $_POST['status']));
+    echo json_encode($insContizacion->updateStatusCotizacion($_POST['id'], $_POST['status']),$_POST['repuestos']);
   }
-
 
 }
