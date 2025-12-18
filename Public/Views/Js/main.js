@@ -7,6 +7,7 @@ import {
   delete_item,
   cotizar,
   getDetalles,
+  delete_list,
 } from "./funtions.js";
 
 if (document.getElementById("login-form")) {
@@ -130,6 +131,13 @@ if (document.getElementById("main")) {
             boton.getAttribute("ts-id"),
             boton.getAttribute("tl-tooltip")
           );
+        });
+      });
+
+      button_delete.forEach((boton) => {
+        boton.addEventListener("click", (e) => {
+          e.preventDefault();
+          delete_list(boton.getAttribute("id"));
         });
       });
     }

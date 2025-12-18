@@ -402,16 +402,41 @@ class cotizacionController extends cotizacionModel
   public function updateStatusCotizacion($id, $status,$repuestos=[])
   {
     session_start();
-    if($this->updateStatusCotizacionModel($id, $status, $_SESSION['id'],$repuestos=[])){
+    if($this->updateRepuestosModel($id, $repuestos)){
+      if($this->updateStatusCotizacionModel($id, $status, $_SESSION['id'],$repuestos=[])){
+        return json_encode([
+          "icono" => "success",
+          "texto" => "Cotizacion " . $status,
+          "tipo" => "recargar"
+        ]);
+      }else{
+        return  json_encode([
+          "icono" => "error",
+          "texto" => "Error al " . $status,
+          "tipo" => "recargar"
+        ]);
+      }
+    }else{
+      return  json_encode([
+        "icono" => "error",
+        "texto" => "Error al " . $status,
+        "tipo" => "recargar"
+      ]);
+    }
+  }
+
+  public function deleteCotizacion($id)
+  {
+    if($this->deleteCotizacionModel($id)){
       return ([
         "icono" => "success",
-        "texto" => "Cotizacion " . $status,
+        "texto" => "Cotizacion Eliminada",
         "tipo" => "recargar"
       ]);
     }else{
       return ([
         "icono" => "error",
-        "texto" => "Error al " . $status,
+        "texto" => "Error al Eliminar",
         "tipo" => "recargar"
       ]);
     }

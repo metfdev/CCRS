@@ -22,7 +22,7 @@ class listadosController extends listadosModel
 
     $cotizaciones = $id == null ? $insListados->listarAll() : $insListados->listarPendientes();
 
-    foreach ( $cotizaciones as $cotizacion) {
+    foreach ($cotizaciones as $cotizacion) {
       if ($cotizacion['id_usuario_aprueba'] == null) {
         $usuario_aprueba[0]['name'] = 'No ha sido';
         $usuario_aprueba[0]['last_name'] = 'aprobado';
@@ -67,15 +67,24 @@ class listadosController extends listadosModel
             </td>
             <td>
               ' . $cotizacion['estado'] . '
-            </td>
-            <td>
-              <div class="button-table-container">
-                <button id="button-detalle" class="button-detalle"  '.$valores.' href="#">'. $icono_table .'</button>
-                <button class="button-delete"  href="#"><i class="fas fa-trash-alt"></i></button>
-              </div>
-            </td>
-          </tr>
-    ';
+            </td>';
+      if ($_SESSION['url'] == 'aprobacion') {
+        $row .= ' <td>
+                <div class="button-table-container">
+                  <button id="button-detalle" class="button-detalle"  ' . $valores . ' href="#">' . $icono_table . '</button>
+                </div>
+              </td>
+            </tr>';
+      }else{
+        $row .= ' <td>
+                <div class="button-table-container">
+                  <button id="button-detalle" class="button-detalle"  ' . $valores . ' href="#">' . $icono_table . '</button>
+                  <button class="button-delete"  href="#"><i class="fas fa-trash-alt"></i></button>
+                </div>
+              </td>
+            </tr>';
+      }
+
 
       echo $row;
     }

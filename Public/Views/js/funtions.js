@@ -7,6 +7,7 @@ export {
   delete_item,
   cotizar,
   getDetalles,
+  delete_list,
 };
 
 const api = "./Api/";
@@ -325,6 +326,25 @@ function updateStatus(id, status,repuestos=[]) {
   formData.append("id", id);
   formData.append("status", status);
   formData.append("repuestos", repuestos);
+
+  fetch(api + "cotizacionAjax.php", {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data["icono"] == "error") {
+        alertas_ajax(data);
+      } else {
+        alertas_ajax(data);
+      }
+    });
+}
+
+function delete_list(id) {
+  let formData = new FormData();
+  formData.append("action", "delete");
+  formData.append("id", id);
 
   fetch(api + "cotizacionAjax.php", {
     method: "POST",
