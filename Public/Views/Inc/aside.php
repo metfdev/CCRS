@@ -26,7 +26,7 @@
             <div class="aside-List-Container">
               <img width="10px" src="<?php echo APP_URL; ?>Public/Views/Img/icons/solicitar.png" alt="iconoSolicitar" class="aside-icono">
             </div>
-            Apobacion
+            Aprobacion
           </a>
         </li>
         <?php endif; ?>

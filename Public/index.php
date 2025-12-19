@@ -1,11 +1,5 @@
 <?php
 
-ini_set('session.gc_maxlifetime', 250);
-ini_set('session.cookie_lifetime', 0);
-ini_set('session.use_strict_mode', 1);
-ob_start();
-
-
 require_once "../config/app.php";
 require_once "../autoload.php";
 require_once "./Views/Inc/session.php";
@@ -60,6 +54,5 @@ if (isset($_GET['views'])) {
   require_once "./Views/Inc/script.php";
   ?>
 </body>
-<?php ob_end_flush(); ?>
 
 </html>

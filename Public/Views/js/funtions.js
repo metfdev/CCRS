@@ -290,7 +290,7 @@ function actionsButton() {
       const jsonMontos = JSON.stringify(montos);
 
       console.log(jsonMontos);
-      updateStatus(document.getElementById("nro").value, "aprobada", jsonMontos);
+      updateStatus(document.getElementById("nro").value, "aprobado", jsonMontos);
     });
 
   }
