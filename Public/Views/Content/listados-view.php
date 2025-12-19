@@ -11,10 +11,6 @@ $_SESSION['url'] = "listados";
   <h1 class="text-center" id="title-listados">Listados</h1>
   <div class="listados-container" id="listados-container">
     <section class="listados-table" id="listados-table">
-      <div class="listados-button-exportar">
-        <button id="exportar-listados"><i class="fas fa-file-export"></i>
-          Exportar</button>
-      </div>
       <table>
         <thead>
           <tr>

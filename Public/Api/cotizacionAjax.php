@@ -2,10 +2,9 @@
 
 require_once('../../Config/app.php');
 require_once('../../autoload.php');
+$insContizacion = new App\Controllers\cotizacionController();
 
 if (isset($_POST['action'])) {
-
-  $insContizacion = new App\Controllers\cotizacionController();
 
   if ($_POST['action'] == "resumen") {
     echo $insContizacion->calculoResumen();
@@ -24,15 +23,20 @@ if (isset($_POST['action'])) {
   }
 
   if ($_POST['action'] == "updateStatus") {
-    $id=$_POST['id'];
-    $status=$_POST['status'];
-    $repuestos=$_POST['repuestos'];
+    $id = $_POST['id'];
+    $status = $_POST['status'];
+    $repuestos = $_POST['repuestos'];
 
-    echo ($insContizacion->updateStatusCotizacion($id, $status,$repuestos));
+    echo ($insContizacion->updateStatusCotizacion($id, $status, $repuestos));
   }
 
   if ($_POST['action'] == "delete") {
     echo json_encode($insContizacion->deleteCotizacion($_POST['id']));
   }
 
+  if (isset($_GET['action']) && $_GET['action'] === 'exportar') {
+    echo $insContizacion->exportarCotizacion($_GET['id']);
+  }
+} else if (isset($_GET['action']) && $_GET['action'] === 'exportar') {
+  echo $insContizacion->exportarCotizacion($_GET['id']);
 }

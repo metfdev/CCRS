@@ -6,7 +6,13 @@
 * Date:    2019-12-07                                                          *
 * Author:  Olivier PLATHEY                                                     *
 *******************************************************************************/
-namespace libraries\pdf;
+
+namespace App\Controllers;
+
+if (!defined('FPDF_FONTPATH')) define('FPDF_FONTPATH','font/');
+if (!defined('FPDF_FONT_CACHE')) define('FPDF_FONT_CACHE',true);
+if (!defined('FPDF_FONT_SUBSET')) define('FPDF_FONT_SUBSET','');
+if (!defined('FPDF_FONT_EXT')) define('FPDF_FONT_EXT','.php');
 
 define('FPDF_VERSION','1.82');
 
@@ -269,7 +275,7 @@ function AliasNbPages($alias='{nb}')
 function Error($msg)
 {
 	// Fatal error
-	throw new Exception('FPDF error: '.$msg);
+	throw new \Exception('FPDF error: '.$msg);
 }
 
 function Close()

@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\cotizacionModel;
 use App\Models\MainModel;
+use App\Controllers\FPDF;
 
 class cotizacionController extends cotizacionModel
 {
@@ -399,27 +400,27 @@ class cotizacionController extends cotizacionModel
   }
 
 
-  public function updateStatusCotizacion($id, $status,$repuestos=[])
+  public function updateStatusCotizacion($id, $status, $repuestos)
   {
     session_start();
-    if($this->updateRepuestosModel($id, $repuestos)){
-      if($this->updateStatusCotizacionModel($id, $status, $_SESSION['id'],$repuestos=[])){
+    if ($this->updateRepuestosModel($id, $repuestos)) {
+      if ($this->updateStatusCotizacionModel($id, $status, $_SESSION['id'], $repuestos)) {
         return json_encode([
           "icono" => "success",
-          "texto" => "Cotizacion " . $status,
+          "titulo" => "Cotizacion " . $status,
           "tipo" => "recargar"
         ]);
-      }else{
+      } else {
         return  json_encode([
           "icono" => "error",
-          "texto" => "Error al " . $status,
+          "titulo" => "Error al " . $status,
           "tipo" => "recargar"
         ]);
       }
-    }else{
+    } else {
       return  json_encode([
         "icono" => "error",
-        "texto" => "Error al " . $status,
+        "titulo" => "Error al " . $status,
         "tipo" => "recargar"
       ]);
     }
@@ -427,19 +428,130 @@ class cotizacionController extends cotizacionModel
 
   public function deleteCotizacion($id)
   {
-    if($this->deleteCotizacionModel($id)){
+    if ($this->deleteCotizacionModel($id)) {
       return ([
         "icono" => "success",
-        "texto" => "Cotizacion Eliminada",
+        "titulo" => "Cotizacion Eliminada",
         "tipo" => "recargar"
       ]);
-    }else{
+    } else {
       return ([
         "icono" => "error",
-        "texto" => "Error al Eliminar",
+        "titulo" => "Error al Eliminar",
         "tipo" => "recargar"
       ]);
     }
   }
 
+  public function exportarCotizacion($id)
+  {
+    $idCotizacion = $id;
+
+    $cotizacionModel = new cotizacionModel();
+
+    $cotizacionModel = $cotizacionModel->getDetallesCotizacionModel($idCotizacion);
+
+    $fecha = $cotizacionModel[0]['fecha'];
+    $departamento = $cotizacionModel[0]['departamento'];
+    $cliente = $cotizacionModel[0]['nombre_cliente'];
+    $modelo = $cotizacionModel[0]['modelo_carro'];
+    $ano = $cotizacionModel[0]['ano_carro'];
+    $placa = $cotizacionModel[0]['placa_carro'];
+    $vin = $cotizacionModel[0]['vin_carro'];
+    $repuestos = $cotizacionModel[0]['data_repuestos'];
+    $repuestos = json_decode($repuestos, true);
+    $notas = $cotizacionModel[0]['nota'];
+
+
+    $pdf = new FPDF();
+    $pdf->AddPage();
+    $pdf->SetAutoPageBreak(true, 20);
+
+    $pdf->Image('../Views/img/Toyorientelogo.png', 10, 10, 40);
+
+    // TITULO
+    $pdf->SetFont('Arial', 'B', 16);
+    $pdf->Cell(0, 10, 'COTIZACION #' . $idCotizacion, 0, 1, 'R');
+
+    $pdf->SetFont('Arial', '', 10);
+    $pdf->Cell(0, 6, 'Fecha: ' . date('d/m/Y', strtotime($fecha)), 0, 1, 'R');
+    $pdf->Cell(0, 6, 'Departamento: ' . $departamento, 0, 1, 'R');
+
+    $pdf->Ln(20);
+
+    $pdf->SetFont('Arial', 'B', 11);
+    $pdf->Cell(0, 8, 'Datos del Cliente', 0, 1);
+
+    $pdf->SetFont('Arial', '', 10);
+    $pdf->Cell(95, 6, 'Cliente: ' . $cliente, 0, 0);
+    $pdf->Cell(95, 6, 'Modelo: ' . $modelo, 0, 1);
+
+    $pdf->Cell(95, 6, 'Año: ' . $ano, 0, 0);
+    $pdf->Cell(95, 6, 'Placa: ' . $placa, 0, 1);
+
+    $pdf->Cell(95, 6, 'VIN: ' . $vin, 0, 1);
+
+    $pdf->Ln(8);
+
+    $pdf->SetFont('Arial', 'B', 10);
+    $pdf->SetFillColor(230, 230, 230);
+
+    $pdf->Cell(10, 8, '#', 1, 0, 'C', true);
+    $pdf->Cell(35, 8, 'Nro Parte', 1, 0, 'C', true);
+    $pdf->Cell(60, 8, 'Descripcion', 1, 0, 'C', true);
+    $pdf->Cell(15, 8, 'Cant', 1, 0, 'C', true);
+    $pdf->Cell(25, 8, 'Precio', 1, 0, 'C', true);
+    $pdf->Cell(25, 8, 'Total', 1, 1, 'C', true);
+
+    $pdf->SetFont('Arial', '', 10);
+
+    $contador = 1;
+    $subtotal = 0;
+
+    foreach ($repuestos as $rep) {
+
+      $totalLinea = (int)$rep['cantidad'] * (int)$rep['monto'];
+      $subtotal += $totalLinea;
+
+      $pdf->Cell(10, 8, $contador++, 1, 0, 'C');
+      $pdf->Cell(35, 8, $rep['nroParte'], 1);
+      $pdf->Cell(60, 8, $rep['nombre'], 1);
+      $pdf->Cell(15, 8, $rep['cantidad'], 1, 0, 'C');
+      $pdf->Cell(25, 8, number_format((float)$rep['monto'], 2), 1, 0, 'R');
+      $pdf->Cell(25, 8, number_format((float)$totalLinea, 2), 1, 1, 'R');
+    }
+
+
+    $iva = $subtotal * 0.16;
+    $totalGeneral = $subtotal + $iva;
+
+    $pdf->Ln(5);
+    $pdf->SetFont('Arial', 'B', 10);
+
+    $pdf->Cell(145, 8, 'Subtotal', 0, 0, 'R');
+    $pdf->Cell(25, 8, number_format($subtotal, 2), 1, 1, 'R');
+
+    $pdf->Cell(145, 8, 'IVA (16%)', 0, 0, 'R');
+    $pdf->Cell(25, 8, number_format($iva, 2), 1, 1, 'R');
+
+    $pdf->SetFont('Arial', 'B', 12);
+    $pdf->Cell(145, 10, 'TOTAL', 0, 0, 'R');
+    $pdf->Cell(25, 10, number_format($totalGeneral, 2), 1, 1, 'R');
+
+
+
+    $pdf->Ln(8);
+    $pdf->SetFont('Arial', 'B', 10);
+    $pdf->Cell(0, 8, 'Notas:', 0, 1);
+
+    $pdf->SetFont('Arial', '', 10);
+    $pdf->MultiCell(0, 6, $notas, 1);
+
+
+    $pdf->Ln(15);
+    $pdf->Cell(0, 6, '_______________________________', 0, 1, 'L');
+    $pdf->Cell(0, 6, 'Firma y Sello', 0, 1, 'L');
+
+    $pdf->Output('I', 'cotizacion_' . $idCotizacion . '.pdf');
+  }
 }

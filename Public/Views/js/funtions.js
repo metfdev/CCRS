@@ -288,19 +288,43 @@ function actionsButton() {
       });
 
       const jsonMontos = JSON.stringify(montos);
-
-      console.log(jsonMontos);
-      updateStatus(document.getElementById("nro").value, "aprobado", jsonMontos);
+      updateStatus(
+        document.getElementById("nro").value,
+        "aprobado",
+        jsonMontos
+      );
     });
-
   }
   if (document.getElementById("button-rechazar")) {
     document
       .getElementById("button-rechazar")
       .addEventListener("click", (e) => {
         e.preventDefault();
+        const inputsMonto = document.querySelectorAll(".input-monto");
+        const montos = [];
+
+        inputsMonto.forEach((input, index) => {
+          montos.push({
+            nroParte: document.querySelectorAll(
+              "#tbody_cotizacion_repuestos tr"
+            )[index].cells[0].textContent,
+            nombre: document.querySelectorAll("#tbody_cotizacion_repuestos tr")[
+              index
+            ].cells[1].textContent,
+            cantidad: document.querySelectorAll(
+              "#tbody_cotizacion_repuestos tr"
+            )[index].cells[2].textContent,
+            monto: input.value,
+          });
+        });
+
+        const jsonMontos = JSON.stringify(montos);
         console.log(document.getElementById("nro").value);
-        updateStatus(document.getElementById("nro").value, "rechazada");
+        updateStatus(
+          document.getElementById("nro").value,
+          "rechazado",
+          jsonMontos
+        );
       });
   }
   if (document.getElementById("button-cerrar")) {
@@ -313,14 +337,13 @@ function actionsButton() {
         .getElementById("button-exportar")
         .addEventListener("click", (e) => {
           e.preventDefault();
-          console.log(document.getElementById("nro").value);
-          console.log("Exportar");
+          exportar_cotizaciones(document.getElementById("nro").value);
         });
     }
   }
 }
 
-function updateStatus(id, status,repuestos=[]) {
+function updateStatus(id, status, repuestos = []) {
   let formData = new FormData();
   formData.append("action", "updateStatus");
   formData.append("id", id);
@@ -358,4 +381,9 @@ function delete_list(id) {
         alertas_ajax(data);
       }
     });
+}
+
+function exportar_cotizaciones(id) {
+  const url = api + "cotizacionAjax.php?action=exportar&id=" + id;
+  window.open(url, "_blank");
 }
