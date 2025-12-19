@@ -79,7 +79,7 @@ class listadosController extends listadosModel
         $row .= ' <td>
                 <div class="button-table-container">
                   <button id="button-detalle" class="button-detalle"  ' . $valores . ' href="#">' . $icono_table . '</button>
-                  <button class="button-delete"  href="#"><i class="fas fa-trash-alt"></i></button>
+                  <button id="'.$cotizacion['id_cotizacion'].'" class="button-delete"  href="#"><i class="fas fa-trash-alt"></i></button>
                 </div>
               </td>
             </tr>';

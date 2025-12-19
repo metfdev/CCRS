@@ -486,7 +486,7 @@ class cotizacionController extends cotizacionModel
     $pdf->Cell(95, 6, 'Cliente: ' . $cliente, 0, 0);
     $pdf->Cell(95, 6, 'Modelo: ' . $modelo, 0, 1);
 
-    $pdf->Cell(95, 6, 'Año: ' . $ano, 0, 0);
+    $pdf->Cell(95, 6, iconv( "UTF-8", "ISO-8859-1",'Año: ') . $ano, 0, 0);
     $pdf->Cell(95, 6, 'Placa: ' . $placa, 0, 1);
 
     $pdf->Cell(95, 6, 'VIN: ' . $vin, 0, 1);

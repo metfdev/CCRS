@@ -96,14 +96,20 @@ class cotizacionModel extends MainModel
 
   public function deleteCotizacionModel($idCotizacion)
   {
-    $sql = "DELETE FROM listados WHERE id_cotizacion = :id_cotizacion";
-    $query = $this->connect()->prepare($sql);
-    $query->execute(['id_cotizacion' => $idCotizacion]);
-    if ($query) {
-      return true;
-      exit;
+    try{
+      $sql="DELETE FROM listados WHERE id_cotizacion = ?";
+      $query2 = $this->connect()->prepare($sql);
+      $query2->execute([$idCotizacion]);
+      $sql = "DELETE FROM cotizaciones WHERE id = ?";
+      $query = $this->connect()->prepare($sql);
+      $query->execute([$idCotizacion]);
+      if ($query && $query2) {
+        return true;
+        exit;
+      }
+    }catch(\PDOException $e){
+      return error_log("Error al eliminar la cotización: " . $e->getMessage());
     }
-    return false;
   }
 
 }
