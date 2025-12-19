@@ -119,6 +119,14 @@ if (document.getElementById("main")) {
               });
             });
         });
+
+      document
+        .getElementById("button-limpiar")
+        .addEventListener("click", (e) => {
+          e.preventDefault();
+          localStorage.removeItem("repuestos");
+          location.reload();
+        });
     }
 
     if (document.querySelector(".listados-section")) {
